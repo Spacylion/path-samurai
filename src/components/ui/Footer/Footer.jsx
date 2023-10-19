@@ -1,9 +1,9 @@
-import "./Footer.css"
+import s from "./Footer.module.css"
 
 const Footer = () => {
   return (
-    <div className='footer'>
-      <div className='footer__socails'>socails here</div>
+    <div className={s.footer}>
+      <div className={s.footer__socails}>socails here</div>
     </div>
   )
 }

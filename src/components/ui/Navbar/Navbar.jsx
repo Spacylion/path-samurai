@@ -1,18 +1,18 @@
-import "./Navbar.css"
+import s from "./Navbar.module.css"
 
 const Navbar = () => (
-  <nav className='nav'>
-    <div className='nav__item'>
-      <a href=''>Profile</a>
+  <nav className={s.nav}>
+    <div className={s.nav__item}>
+      <a href='/profile'>Profile</a>
     </div>
-    <div className='nav__item'>
-      <a href=''>Messages</a>
+    <div className={s.nav__item}>
+      <a href='/dialogs'>Messages</a>
     </div>
-    <div className='nav__item'>
-      <a href=''>News</a>
+    <div className={s.nav__item}>
+      <a href='/news'>News</a>
     </div>
-    <div className='nav__item'>
-      <a href=''>Music</a>
+    <div className={s.nav__item}>
+      <a href='/music'>Music</a>
     </div>
   </nav>
 )

@@ -1,9 +1,9 @@
-import "./Header.css"
+import s from "./Header.module.css"
 
 const Header = () => {
   return (
-    <header className='header'>
-      <img className='header--image' src='../../assets/logo.png' alt='' />
+    <header className={s.header}>
+      <img className={s.header__image} src='../../assets/logo.png' alt='' />
     </header>
   )
 }

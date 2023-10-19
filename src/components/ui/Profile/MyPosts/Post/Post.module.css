@@ -1,0 +1,19 @@
+.post {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.content__post {
+  color: green;
+}
+
+.content__post.active {
+  color: gold;
+}
+
+.post__image {
+  width: 80px;
+  height: 80px;
+  border-radius: 14px;
+}
