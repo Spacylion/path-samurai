@@ -1,7 +1,7 @@
-import Header from "./components/ui/Header"
-import Footer from "./components/ui/Footer"
-import Profile from "./components/ui/Profile"
-import Navbar from "./components/ui/Navbar"
+import Header from "./components/ui/Header/Header"
+import Footer from "./components/ui/Footer/Footer"
+import Profile from "./components/ui/Profile/Profile"
+import Navbar from "./components/ui/Navbar/Navbar"
 
 import "./styles/App.css"
 
