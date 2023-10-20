@@ -3,9 +3,9 @@ import Post from "./Post/Post"
 
 const MyPosts = () => {
   return (
-    <div>
+    <div className={s.content}>
       <div className={s.content__item}>
-        My posts
+        <h3>My posts</h3>
         <div className={s.content__new__profile}>
           <textarea
             className={s.content__text__area}
