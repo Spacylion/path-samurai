@@ -10,7 +10,7 @@
 }
 
 .content__post.active {
-  color: gold;
+  color: rgb(0, 0, 0);
 }
 
 .post__image {

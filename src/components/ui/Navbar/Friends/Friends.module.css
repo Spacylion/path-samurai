@@ -1,0 +1,14 @@
+.frineds__wrapper {
+  display: flex;
+}
+.nav__friends {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.friends__image {
+  border-radius: 100%;
+  width: 40px;
+  height: 40px;
+}

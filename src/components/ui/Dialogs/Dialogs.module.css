@@ -6,7 +6,7 @@
   padding: 10px;
 }
 .dialogList .active {
-  color: gold;
+  color: rgb(0, 0, 0);
 }
 .messageList {
   padding: 10px;
