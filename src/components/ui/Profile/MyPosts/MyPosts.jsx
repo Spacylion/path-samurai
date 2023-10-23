@@ -3,6 +3,11 @@
 import s from "./MyPosts.module.css"
 import Post from "./Post/Post"
 import React from "react"
+// action creators
+import {
+  addPostActionCreator,
+  onPostChangeActionCreator,
+} from "../../../../redux/actions/actions"
 
 const MyPosts = (props) => {
   let postsElements = props.posts.map((p) => (
@@ -11,15 +16,17 @@ const MyPosts = (props) => {
 
   let newPostElement = React.createRef()
 
-  let addPost = () => {
-    props.addPost()
-  }
   let deletePost = () => {
     alert("bye bye")
   }
+
+  let addPost = () => {
+    props.dispatch(addPostActionCreator())
+  }
   let onPostChange = () => {
     let text = newPostElement.current.value
-    props.updateNewPostText(text)
+    let action = onPostChangeActionCreator(text)
+    props.dispatch(action)
   }
   return (
     <div className={s.content}>

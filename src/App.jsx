@@ -12,7 +12,7 @@ import Settings from "./components/ui/Settings/Settings"
 
 import "./styles/App.css"
 
-function App(props) {
+const App = (props) => {
   return (
     <div className='app-wrapper'>
       <Header />
@@ -21,14 +21,16 @@ function App(props) {
         <Routes>
           <Route
             path='/dialogs'
-            element={<Dialogs state={props.state.dialogsPage} />}
+            element={
+              <Dialogs state={props.state.dialogsPage} store={props.store} />
+            }
           />
           <Route
             path='/profile'
             element={
               <Profile
                 profilePage={props.state.profilePage}
-                addPost={props.addPost}
+                dispatch={props.dispatch}
               />
             }
           />
