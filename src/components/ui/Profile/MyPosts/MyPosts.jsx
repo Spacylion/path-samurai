@@ -4,10 +4,8 @@ import s from "./MyPosts.module.css"
 import Post from "./Post/Post"
 import React from "react"
 // action creators
-import {
-  addPostActionCreator,
-  onPostChangeActionCreator,
-} from "../../../../redux/actions/actions"
+import addPostActionCreator from "../../../../redux/reducers/profileReducer"
+import onPostChangeActionCreator from "../../../../redux/reducers/profileReducer"
 
 const MyPosts = (props) => {
   let postsElements = props.posts.map((p) => (

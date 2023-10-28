@@ -1,7 +1,8 @@
+/* eslint-disable no-debugger */
 import ReactDOM from "react-dom/client"
 
 import App from "./App.jsx"
-import store from "./redux/state/state.js"
+import store from "./redux/redux-store/redux-store.js"
 import { BrowserRouter } from "react-router-dom"
 
 import "./styles/reset.css"
@@ -16,4 +17,7 @@ let rerenderEntireTree = (state) => {
 }
 rerenderEntireTree(store.getState())
 
-store.subscribe(rerenderEntireTree)
+store.subscribe(() => {
+  let state = store.getState()
+  rerenderEntireTree()
+})

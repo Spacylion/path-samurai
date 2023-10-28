@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger */
 /* eslint-disable react/prop-types */
 import { Routes, Route } from "react-router-dom"
 
