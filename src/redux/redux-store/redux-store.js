@@ -1,4 +1,5 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { combineReducers, createStore } from 'redux';
+
 import profileReducer from '../reducers/profileReducer';
 import friendsReducer from '../reducers/friendsReducer';
 import dialogsReducer from '../reducers/dialogsReducer';
@@ -11,8 +12,10 @@ let reducers = combineReducers({
 });
 
 // Создаем хранилище, используя корневой редуктор
-let store = configureStore({
-    reducer: reducers,
-});
+let store = createStore(reducers);
+
+
 
 export default store;
+
+

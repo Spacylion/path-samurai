@@ -1,15 +1,12 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react/jsx-key */
+/* eslint-disable no-debugger */
 import s from "./MyPosts.module.css"
 import Post from "./Post/Post"
 import React from "react"
-// action creators
-import addPostActionCreator from "../../../../redux/reducers/profileReducer"
-import onPostChangeActionCreator from "../../../../redux/reducers/profileReducer"
+import PropTypes from "prop-types" // Import PropTypes
 
 const MyPosts = (props) => {
-  let postsElements = props.posts.map((p) => (
-    <Post message={p.message} likesCount={p.likesCount} />
+  let postsElements = props.posts.map((p, index) => (
+    <Post key={index} message={p.message} likesCount={p.likesCount} />
   ))
 
   let newPostElement = React.createRef()
@@ -18,13 +15,12 @@ const MyPosts = (props) => {
     alert("bye bye")
   }
 
-  let addPost = () => {
-    props.dispatch(addPostActionCreator())
+  let onAddPost = () => {
+    props.addPost()
   }
   let onPostChange = () => {
     let text = newPostElement.current.value
-    let action = onPostChangeActionCreator(text)
-    props.dispatch(action)
+    props.updateNewPostText(text)
   }
   return (
     <div className={s.content}>
@@ -37,8 +33,10 @@ const MyPosts = (props) => {
             onChange={onPostChange}
             value={props.newPostText}
           ></textarea>
-          {/* <div>{props.newPostText}</div> */}
-          <button onClick={addPost} className={`${s.content__button} ${s.add}`}>
+          <button
+            onClick={onAddPost}
+            className={`${s.content__button} ${s.add}`}
+          >
             Add post
           </button>
           <button
@@ -52,6 +50,13 @@ const MyPosts = (props) => {
       <div className={s.content__posts}>{postsElements}</div>
     </div>
   )
+}
+
+MyPosts.propTypes = {
+  posts: PropTypes.array.isRequired,
+  addPost: PropTypes.func.isRequired,
+  updateNewPostText: PropTypes.func.isRequired,
+  newPostText: PropTypes.string.isRequired,
 }
 
 export default MyPosts

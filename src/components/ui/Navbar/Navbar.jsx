@@ -3,7 +3,7 @@ import Friends from "./Friends/Friends"
 import s from "./Navbar.module.css"
 
 const Navbar = (props) => {
-  // debugger
+  // Assuming you have a `friends` property in your Redux state
   return (
     <nav className={s.nav}>
       <div className={s.nav__item}>
@@ -20,7 +20,8 @@ const Navbar = (props) => {
       </div>
       <div className={s.nav__item}>
         <a href='/friend'></a>
-        <Friends friends={props.state.friends} />
+        <Friends friends={props.store} />
+        {/* Access the store correctly using props.store */}
       </div>
     </nav>
   )

@@ -1,16 +1,13 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-key */
+import React from "react"
 import s from "./Dialogs.module.css"
 import DialogItem from "./DialogItem/DialogItem"
 import MessageItem from "./MessageItem/MessageItem"
-import React from "react"
-import sendMessageCreator from "../../../redux/reducers/dialogsReducer"
-import updateNewMessageBodyCreator from "../../../redux/reducers/dialogsReducer"
 
 const Dialogs = (props) => {
   let messageText = React.createRef()
-
-  let state = props.store.getState().dialogsPage
+  let state = props.dialogsPage
 
   let dialogElements = state.dialogs.map((d) => {
     return <DialogItem name={d.name} id={d.id} />
@@ -21,13 +18,12 @@ const Dialogs = (props) => {
   let newMessageBody = state.newMessageBody
 
   // button
-  let onSendMessageClick = (e) => {
-    let body = e.target.value
-    props.state.dispatch(sendMessageCreator(body))
+  let onSendMessageClick = () => {
+    props.sendMessage()
   }
   let onNewMessageChange = (e) => {
     let body = e.target.value
-    props.store.dispatch(updateNewMessageBodyCreator(body))
+    props.updateNewMessageBodyCreator(body)
   }
 
   return (
