@@ -1,6 +1,9 @@
 import { connect } from "react-redux"
-import sendMessageCreator from "../../../redux/reducers/dialogsReducer"
-import updateNewMessageBodyCreator from "../../../redux/reducers/dialogsReducer"
+import {
+  sendMessageCreator,
+  updateNewMessageBodyCreator,
+} from "../../../redux/reducers/dialogsReducer"
+
 import Dialogs from "./Dialogs"
 
 // react- redux
@@ -13,10 +16,10 @@ let mapStateToProps = (state) => {
 // настраивает колбеки которые в презентационные компоненты пойдет
 let mapDispatchToProps = (dispatch) => {
   return {
-    updateNewMessageBody: () => {
+    sendMessage: () => {
       dispatch(sendMessageCreator())
     },
-    sendMessage: (body) => {
+    updateNewMessageBody: (body) => {
       dispatch(updateNewMessageBodyCreator(body))
     },
   }

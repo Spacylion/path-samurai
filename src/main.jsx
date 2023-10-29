@@ -10,17 +10,10 @@ import "./styles/fonts.css"
 
 import { Provider } from "react-redux"
 
-let rerenderEntireTree = () => {
-  ReactDOM.createRoot(document.getElementById("root")).render(
-    <BrowserRouter>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </BrowserRouter>
-  )
-}
-rerenderEntireTree(store.getState())
-
-store.subscribe(() => {
-  rerenderEntireTree(store.getState())
-})
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <BrowserRouter>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </BrowserRouter>
+)

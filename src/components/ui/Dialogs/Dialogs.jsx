@@ -6,14 +6,14 @@ import DialogItem from "./DialogItem/DialogItem"
 import MessageItem from "./MessageItem/MessageItem"
 
 const Dialogs = (props) => {
-  let messageText = React.createRef()
   let state = props.dialogsPage
+  let messageText = React.createRef()
 
   let dialogElements = state.dialogs.map((d) => {
-    return <DialogItem name={d.name} id={d.id} />
+    return <DialogItem name={d.name} key={d.id} id={d.id} />
   })
   let messagesElements = state.messages.map((m) => {
-    return <MessageItem message={m.message} id={m.id} />
+    return <MessageItem message={m.message} key={m.id} id={m.id} />
   })
   let newMessageBody = state.newMessageBody
 
@@ -23,7 +23,7 @@ const Dialogs = (props) => {
   }
   let onNewMessageChange = (e) => {
     let body = e.target.value
-    props.updateNewMessageBodyCreator(body)
+    props.updateNewMessageBody(body) // Изменил это место
   }
 
   return (
