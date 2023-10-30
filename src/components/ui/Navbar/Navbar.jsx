@@ -10,6 +10,9 @@ const Navbar = (props) => {
         <a href='/profile'>Profile</a>
       </div>
       <div className={s.nav__item}>
+        <a href='/users'>Users</a>
+      </div>
+      <div className={s.nav__item}>
         <a href='/dialogs'>Messages</a>
       </div>
       <div className={s.nav__item}>

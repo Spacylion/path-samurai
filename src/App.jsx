@@ -12,6 +12,7 @@ import Settings from "./components/ui/Settings/Settings"
 
 import "./styles/App.css"
 import DialogsContainer from "./components/ui/Dialogs/DialogsContainer"
+import UsersContainer from "./components/ui/Users/UsersContainer"
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
         <Routes>
           <Route path='/dialogs' element={<DialogsContainer />} />
           <Route path='/profile' element={<Profile />} />
+          <Route path='/users' element={<UsersContainer />} />
           <Route path='/news' element={<News />} />
           <Route path='/music' element={<Music />} />
           <Route path='/settings' element={<Settings />} />
