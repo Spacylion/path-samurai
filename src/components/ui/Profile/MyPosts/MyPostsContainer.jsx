@@ -22,6 +22,7 @@ let mapOnPostChange = (dispatch) => {
       dispatch(addPostActionCreator())
     },
   }
+  
 }
 
 const MyPostsContainer = connect(mapAddPost, mapOnPostChange)(MyPosts)

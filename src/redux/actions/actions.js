@@ -6,4 +6,5 @@ export const SEND_MESSAGE = 'SEND_MESSAGE'
 export const FOLLOW_BUTTON = 'FOLLOW_BUTTON'
 export const UNFOLLOW_BUTTON = 'NFOLLOW_BUTTON'
 export const SET_USERS = 'SET_USERS'
+export const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
 
