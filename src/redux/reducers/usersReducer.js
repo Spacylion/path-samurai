@@ -1,17 +1,17 @@
 /* eslint-disable no-fallthrough */
 import {
-    FOLLOW_BUTTON, UNFOLLOW_BUTTON, SET_USERS, SET_CURRENT_PAGE
+    FOLLOW_BUTTON, UNFOLLOW_BUTTON, SET_USERS, SET_CURRENT_PAGE, SET_TOTAL_USERS_COUNT, TOGGLE_IS_FETCHING
 } from "../actions/actions"
 
 let initialState = {
     users: [],
     pageSize: 5,
-    totalUsersCount: 19,
-    currentPage: 3
+    totalUsersCount: 0,
+    currentPage: 1,
+    isFetching: false
 }
 
 const usersReducer = (state = initialState, action) => {
-
     switch (action.type) {
         case FOLLOW_BUTTON:
             {
@@ -25,7 +25,6 @@ const usersReducer = (state = initialState, action) => {
                     })
                 }
             }
-
         case UNFOLLOW_BUTTON:
             {
                 return {
@@ -38,17 +37,22 @@ const usersReducer = (state = initialState, action) => {
                     })
                 }
             }
-
-
         case SET_USERS:
             return {
                 ...state,
-                users: [...state.users, ...action.users]
+                users: action.users
             }
-
         case SET_CURRENT_PAGE:
             return {
                 ...state, currentPage: action.currentPage
+            }
+        case SET_TOTAL_USERS_COUNT:
+            return {
+                ...state, totalUsersCount: action.count
+            }
+        case TOGGLE_IS_FETCHING:
+            return {
+                ...state, isFetching: action.isFetching
             }
         default:
             return state
@@ -56,10 +60,12 @@ const usersReducer = (state = initialState, action) => {
 
 }
 // actionsCreators
-export const followAC = (userId) => ({ type: FOLLOW_BUTTON, userId })
-export const unfollowAC = (userId) => ({ type: UNFOLLOW_BUTTON, userId })
-export const setUsersAC = (users) => ({ type: SET_USERS, users })
-export const setCurrentPageAC = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage: currentPage })
+export const follow = (userId) => ({ type: FOLLOW_BUTTON, userId })
+export const unfollow = (userId) => ({ type: UNFOLLOW_BUTTON, userId })
+export const setUsers = (users) => ({ type: SET_USERS, users })
+export const setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage: currentPage })
+export const setTotalUsersCount = (totalUsersCount) => ({ type: SET_TOTAL_USERS_COUNT, count: totalUsersCount })
+export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching })
 
 
 // export reducer
