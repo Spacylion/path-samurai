@@ -24,7 +24,7 @@ const App = () => {
           <Route path='/dialogs' element={<DialogsContainer />} />
           <Route path='/profile' element={<ProfileContainer />} />
           {/* userId = comes from useParams */}
-          <Route path='/users:userId?' element={<UsersContainer />} />
+          <Route path='/users' element={<UsersContainer />} />
           <Route path='/news' element={<News />} />
           <Route path='/music' element={<Music />} />
           <Route path='/settings' element={<Settings />} />

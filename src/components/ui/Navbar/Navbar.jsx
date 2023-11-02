@@ -23,8 +23,7 @@ const Navbar = (props) => {
       </div>
       <div className={s.nav__item}>
         <a href='/friend'></a>
-        <Friends friends={props.store} />
-        {/* Access the store correctly using props.store */}
+        <Friends friends={props.friends} />
       </div>
     </nav>
   )
