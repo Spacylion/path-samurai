@@ -1,4 +1,5 @@
-import { combineReducers, createStore } from 'redux';
+import { applyMiddleware, combineReducers, createStore } from 'redux';
+import ThunkMiddleware from 'redux-thunk';
 
 import profileReducer from '../reducers/profileReducer';
 import friendsReducer from '../reducers/friendsReducer';
@@ -16,7 +17,7 @@ let reducers = combineReducers({
 });
 
 // Создаем хранилище, используя корневой редуктор
-let store = createStore(reducers);
+let store = createStore(reducers, applyMiddleware(ThunkMiddleware));
 
 window.store = store
 

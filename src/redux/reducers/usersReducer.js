@@ -1,6 +1,9 @@
 /* eslint-disable no-fallthrough */
+import { usersAPI } from '../../api/api'
 import {
-    FOLLOW_BUTTON, UNFOLLOW_BUTTON, SET_USERS, SET_CURRENT_PAGE, SET_TOTAL_USERS_COUNT, TOGGLE_IS_FETCHING
+    FOLLOW_BUTTON, UNFOLLOW_BUTTON, SET_USERS,
+    SET_CURRENT_PAGE, SET_TOTAL_USERS_COUNT, TOGGLE_IS_FETCHING,
+    TOGGLE_IS_FOLLOWING_PROGRESS
 } from "../actions/actions"
 
 let initialState = {
@@ -8,7 +11,8 @@ let initialState = {
     pageSize: 5,
     totalUsersCount: 0,
     currentPage: 1,
-    isFetching: false
+    isFetching: false,
+    followingInProgress: []
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -54,18 +58,74 @@ const usersReducer = (state = initialState, action) => {
             return {
                 ...state, isFetching: action.isFetching
             }
+        case TOGGLE_IS_FOLLOWING_PROGRESS:
+            return {
+                ...state,
+                followingInProgress: action.isFetching
+                    ? [...state.followingInProgress, action.userId]
+                    : state.followingInProgress.filter(id => id != action.userId)
+            }
         default:
             return state
     }
 
 }
 // actionsCreators
-export const follow = (userId) => ({ type: FOLLOW_BUTTON, userId })
-export const unfollow = (userId) => ({ type: UNFOLLOW_BUTTON, userId })
+export const followSuccess = (userId) => ({ type: FOLLOW_BUTTON, userId })
+export const unfollowSuccess = (userId) => ({ type: UNFOLLOW_BUTTON, userId })
 export const setUsers = (users) => ({ type: SET_USERS, users })
 export const setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage: currentPage })
 export const setTotalUsersCount = (totalUsersCount) => ({ type: SET_TOTAL_USERS_COUNT, count: totalUsersCount })
 export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching })
+export const toggleFollowingProgress = (isFetching, userId) => ({ type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId })
+
+
+
+// thunks creators
+export const getUsers = (currentPage, pageSize) => {
+    return (dispatch) => {
+        dispatch(toggleIsFetching(true));
+        usersAPI
+            .getUsers(currentPage, pageSize)
+            .then((data) => {
+                dispatch(toggleIsFetching(false))
+                dispatch(setUsers(data.items))
+                dispatch(setTotalUsersCount(data.totalCount))
+            })
+    }
+}
+export const follow = (userId) => {
+    return (dispatch) => {
+        dispatch(toggleFollowingProgress(true, userId))
+        usersAPI
+            .follow(userId)
+            .then((data) => {
+                if (data.resultCode === 0) {
+                    dispatch(followSuccess(userId))
+                }
+                dispatch(toggleFollowingProgress(false, userId))
+            })
+            .catch((error) => {
+                // Обработка ошибок
+                console.error(error);
+                dispatch(toggleFollowingProgress(false, userId));
+            });
+    }
+}
+
+export const unfollow = (userId) => {
+    return (dispatch) => {
+        dispatch(toggleFollowingProgress(true, userId))
+        usersAPI
+            .unfollow(userId)
+            .then((data) => {
+                if (data.resultCode === 0) {
+                    dispatch(unfollowSuccess(userId))
+                }
+                dispatch(toggleFollowingProgress(false, userId))
+            })
+    }
+}
 
 
 // export reducer

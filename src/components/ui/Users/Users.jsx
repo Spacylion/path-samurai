@@ -1,8 +1,7 @@
 import { NavLink } from "react-router-dom"
 import userPhoto from "../../../assets/avatar.png"
 import s from "./Users.module.css"
-import axios from "axios"
-import { usersAPI } from "../../../api/api"
+import { follow, unfollow } from "../../../redux/reducers/usersReducer"
 
 const Users = (props) => {
   let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
@@ -42,24 +41,18 @@ const Users = (props) => {
             <div>
               {u.followed ? (
                 <button
+                  disabled={props.followingInProgress.some((id) => id === u.id)}
                   onClick={() => {
-                    usersAPI.delFollowed(u.id).then((data) => {
-                      if (data.resultCode !== 0) {
-                        props.unfollow(u.id)
-                      }
-                    })
+                    props.unfollow(u.id)
                   }}
                 >
                   Unfollow
                 </button>
               ) : (
                 <button
+                  disabled={props.followingInProgress.some((id) => id === u.id)}
                   onClick={() => {
-                    usersAPI.postFollowed(u.id).then((data) => {
-                      if (data.resultCode === 0) {
-                        props.follow(u.id)
-                      }
-                    })
+                    props.follow(u.id)
                   }}
                 >
                   Follow
