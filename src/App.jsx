@@ -13,6 +13,7 @@ import DialogsContainer from "./components/ui/Dialogs/DialogsContainer"
 import UsersContainer from "./components/ui/Users/UsersContainer"
 import ProfileContainer from "./components/ui/Profile/ProfileContainer"
 import HeaderContainer from "./components/ui/Header/HeaderContainer"
+import LoginPage from "./components/ui/Login/Login"
 
 const App = () => {
   return (
@@ -21,9 +22,9 @@ const App = () => {
       <Navbar />
       <div className='app-wrapper-content'>
         <Routes>
+          <Route path='/login' element={<LoginPage />} />
           <Route path='/dialogs' element={<DialogsContainer />} />
           <Route path='/profile' element={<ProfileContainer />} />
-          {/* userId = comes from useParams */}
           <Route path='/users' element={<UsersContainer />} />
           <Route path='/news' element={<News />} />
           <Route path='/music' element={<Music />} />

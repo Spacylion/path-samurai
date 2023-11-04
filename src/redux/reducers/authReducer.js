@@ -2,6 +2,7 @@
 import {
     SET_USER_DATA
 } from "../actions/actions"
+import { authAPI } from '../../api/api'
 
 let initialState = {
 
@@ -30,3 +31,17 @@ const authReducer = (state = initialState, action) => {
 // actionsCreators
 export const setAuthUserData = (userId, email, login) => ({ type: SET_USER_DATA, data: { userId, email, login } })
 export default authReducer
+
+// thunks creators
+export const getAuthUserData = () => {
+    return (dispatch) => {
+        authAPI
+            .getAuthMe()
+            .then((response) => {
+                if (response.data.resultCode === 0) {
+                    let { id, login, email } = response.data.data
+                    dispatch(setAuthUserData(id, email, login))
+                }
+            })
+    }
+}

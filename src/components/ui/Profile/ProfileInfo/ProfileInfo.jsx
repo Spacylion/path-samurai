@@ -1,3 +1,4 @@
+import React from "react"
 import Preloader from "../../../features/Preloader/Preloader"
 import s from "./ProfileInfo.module.css"
 
@@ -15,10 +16,10 @@ const ProfileInfo = (props) => {
       />
 
       <div className={s.content__profile}>
-        <img src={props.profile.photos.large} alt='' />
-        <h1></h1>
+        <img src={props.profile.photos?.large || "default-image-url"} alt='' />
+        <h1>{props.profile.fullName}</h1>
         <h2>{props.profile.aboutMe}</h2>
-        <a>{props.profile.contacts.facebook}</a>
+        <a>{props.profile.contacts?.facebook || "No Facebook"}</a>
       </div>
     </div>
   )

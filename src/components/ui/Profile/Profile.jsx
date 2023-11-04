@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import ProfileInfo from "./ProfileInfo/ProfileInfo"
 import s from "./Profile.module.css"
 import MyPostsContainer from "./MyPosts/MyPostsContainer"

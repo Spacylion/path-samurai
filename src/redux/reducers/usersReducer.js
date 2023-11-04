@@ -68,7 +68,6 @@ const usersReducer = (state = initialState, action) => {
         default:
             return state
     }
-
 }
 // actionsCreators
 export const followSuccess = (userId) => ({ type: FOLLOW_BUTTON, userId })
@@ -78,8 +77,6 @@ export const setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE, curren
 export const setTotalUsersCount = (totalUsersCount) => ({ type: SET_TOTAL_USERS_COUNT, count: totalUsersCount })
 export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching })
 export const toggleFollowingProgress = (isFetching, userId) => ({ type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId })
-
-
 
 // thunks creators
 export const getUsers = (currentPage, pageSize) => {

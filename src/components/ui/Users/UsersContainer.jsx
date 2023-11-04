@@ -10,6 +10,8 @@ import {
 } from "../../../redux/reducers/usersReducer"
 import Users from "./Users"
 import Preloader from "../../features/Preloader/Preloader"
+import { compose } from "redux"
+import { withAuthRedirect } from "../../../hoc/withAuthRedirect"
 
 class UsersContainer extends React.Component {
   componentDidMount() {
@@ -69,4 +71,13 @@ Users.propTypes = {
   followingInProgress: PropTypes.array.isRequired,
 }
 
-export default ConnectedUsers
+export default compose(
+  withAuthRedirect, //redirect to login
+  connect(mapStateToProps, {
+    follow,
+    unfollow,
+    setCurrentPage,
+    toggleFollowingProgress,
+    getUsers: getUsers,
+  })
+)(UsersContainer)

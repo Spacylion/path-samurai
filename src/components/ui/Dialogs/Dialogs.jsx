@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react/jsx-key */
 import React from "react"
 import s from "./Dialogs.module.css"
 import DialogItem from "./DialogItem/DialogItem"

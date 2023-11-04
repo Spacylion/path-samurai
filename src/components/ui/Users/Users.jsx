@@ -1,7 +1,6 @@
 import { NavLink } from "react-router-dom"
 import userPhoto from "../../../assets/avatar.png"
 import s from "./Users.module.css"
-import { follow, unfollow } from "../../../redux/reducers/usersReducer"
 
 const Users = (props) => {
   let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
