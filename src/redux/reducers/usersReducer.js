@@ -5,7 +5,6 @@ import {
     SET_CURRENT_PAGE, SET_TOTAL_USERS_COUNT, TOGGLE_IS_FETCHING,
     TOGGLE_IS_FOLLOWING_PROGRESS
 } from "../actions/actions"
-
 let initialState = {
     users: [],
     pageSize: 5,

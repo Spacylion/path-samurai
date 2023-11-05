@@ -1,32 +1,53 @@
 import { useEffect } from "react"
 import { connect } from "react-redux"
-import { getUserProfile } from "../../../redux/reducers/profileReducer"
+import {
+  getStatus,
+  updateStatus,
+  getUserProfile,
+} from "../../../redux/reducers/profileReducer"
 import { useParams } from "react-router-dom"
-
 import Profile from "./Profile"
-import { withAuthRedirect } from "../../../hoc/withAuthRedirect"
 import { compose } from "redux"
 
-const ProfileContainer = ({ getUserProfile, profile, isAuth }) => {
+const ProfileContainer = ({
+  getUserProfile,
+  getStatus,
+  updateStatus,
+  profile,
+  status,
+  isAuth,
+}) => {
   const { userId } = useParams()
 
   useEffect(() => {
-    const targetUserId = userId || 2
+    const targetUserId = userId || 8
     getUserProfile(targetUserId)
-  }, [userId, getUserProfile])
+    getStatus(targetUserId)
+    updateStatus(targetUserId)
+  }, [userId, getUserProfile, getStatus, updateStatus])
 
   return (
     <div>
-      <Profile profile={profile} isAuth={isAuth} />
+      <Profile
+        profile={profile}
+        status={status} // Передаем статус в пропсах
+        isAuth={isAuth}
+        updateStatus={updateStatus}
+      />
     </div>
   )
 }
 
 let mapStateToProps = (state) => ({
   profile: state.profilePage.profile,
+  status: state.profilePage.status,
 })
 
 export default compose(
-  connect(mapStateToProps, { getUserProfile }),
-  withAuthRedirect
+  connect(mapStateToProps, {
+    getUserProfile,
+    getStatus,
+    updateStatus,
+  })
+  // withAuthRedirect
 )(ProfileContainer)
