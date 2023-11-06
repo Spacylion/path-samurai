@@ -1,6 +1,6 @@
 /* eslint-disable no-case-declarations */
 import {
-    UPDATE_NEW_MESSAGE_BODY, SEND_MESSAGE
+    SEND_MESSAGE
 } from "../actions/actions"
 
 let initialState = {
@@ -32,24 +32,15 @@ let initialState = {
         { id: 6, name: "Spacy" },
         { id: 7, name: "FronkyFrog" },
     ],
-    newMessageBody: ''
 }
 
 const dialogsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case UPDATE_NEW_MESSAGE_BODY: {
-            return {
-                ...state,
-                newMessageBody: action.body
-            }
-        }
         case SEND_MESSAGE: {
-            let body = state.newMessageBody;
+            let body = action.newMessageBody;
             return {
                 ...state,
-                stateCopy: '',
                 messages: [...state.messages, { id: 8, message: body }]
-
             }
         }
         default:
@@ -58,6 +49,7 @@ const dialogsReducer = (state = initialState, action) => {
 }
 
 // actionsCreators
-export const sendMessageCreator = () => ({ type: SEND_MESSAGE })
-export const updateNewMessageBodyCreator = (body) => ({ type: UPDATE_NEW_MESSAGE_BODY, body: body })
+export const sendMessageCreator = (newMessageBody) => ({ type: SEND_MESSAGE, newMessageBody })
 export default dialogsReducer
+
+// thunks

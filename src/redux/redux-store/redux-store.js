@@ -1,5 +1,6 @@
 import { applyMiddleware, combineReducers, createStore } from 'redux';
 import ThunkMiddleware from 'redux-thunk';
+import { reducer as formReducer } from 'redux-form';
 
 import profileReducer from '../reducers/profileReducer';
 import friendsReducer from '../reducers/friendsReducer';
@@ -13,7 +14,8 @@ let reducers = combineReducers({
     friendsPage: friendsReducer,
     dialogsPage: dialogsReducer,
     usersPage: usersReducer,
-    auth: authReducer
+    auth: authReducer,
+    form: formReducer
 });
 
 // Создаем хранилище, используя корневой редуктор

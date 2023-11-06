@@ -1,4 +1,4 @@
-import preloader from "../../../assets/loading.svg"
+import preloader from "../../assets/loading.svg"
 
 let Preloader = () => {
   return (

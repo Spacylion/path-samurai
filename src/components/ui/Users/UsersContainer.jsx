@@ -9,7 +9,7 @@ import {
   getUsers,
 } from "../../../redux/reducers/usersReducer"
 import Users from "./Users"
-import Preloader from "../../features/Preloader/Preloader"
+import Preloader from "../../../Features/Preloader/Preloader"
 import { compose } from "redux"
 import { withAuthRedirect } from "../../../hoc/withAuthRedirect"
 

@@ -1,8 +1,5 @@
 import { connect } from "react-redux"
-import {
-  addPostActionCreator,
-  onPostChangeActionCreator,
-} from "../../../../redux/reducers/profileReducer"
+import { addPostActionCreator } from "../../../../redux/reducers/profileReducer"
 import MyPosts from "./MyPosts"
 
 const mapAddPost = (state) => {
@@ -14,15 +11,10 @@ const mapAddPost = (state) => {
 
 let mapOnPostChange = (dispatch) => {
   return {
-    updateNewPostText: (text) => {
-      let action = onPostChangeActionCreator(text)
-      dispatch(action)
-    },
-    addPost: () => {
-      dispatch(addPostActionCreator())
+    addPost: (newPostText) => {
+      dispatch(addPostActionCreator(newPostText))
     },
   }
-  
 }
 
 const MyPostsContainer = connect(mapAddPost, mapOnPostChange)(MyPosts)

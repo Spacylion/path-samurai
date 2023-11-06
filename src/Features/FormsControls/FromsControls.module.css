@@ -1,0 +1,10 @@
+.form__control.error input,
+.form__control.error textarea {
+  border-width: 5px; /* Используйте border-width, а не border-color */
+  border-style: solid; /* Укажите стиль границы, например, solid */
+  border-color: red;
+}
+
+.form__control.error span {
+  color: red;
+}

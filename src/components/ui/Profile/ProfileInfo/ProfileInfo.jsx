@@ -1,4 +1,4 @@
-import Preloader from "../../../features/Preloader/Preloader"
+import Preloader from "../../../../Features/Preloader/Preloader"
 import s from "./ProfileInfo.module.css"
 import ProfileStatus from "./ProfileStatus"
 
@@ -9,11 +9,6 @@ const ProfileInfo = (props) => {
 
   return (
     <div>
-      {/* <img
-        className={s.content__image}
-        src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREiKK0MLBSufP9ZTCHsZY-a_k-i_LZydymClGiUZj4&s'
-        alt=''
-      /> */}
       <div className={s.content__profile}>
         <img src={props.profile.photos?.large || "default-image-url"} alt='' />
         <ProfileStatus

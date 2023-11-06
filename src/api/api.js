@@ -53,6 +53,22 @@ export const authAPI = {
     getAuthMe() {
         return instance
             .get(`/auth/me`)
-
     },
+    login() {
+        return instance
+            .post(`/auth/login`)
+    },
+    logout() {
+        return instance
+            .delete(`/auth/login`)
+    }
 }
+
+// export const dialogsAPI = {
+//     getDialogs() {
+//         return instance
+//             .get(`/auth/me`)
+//     },
+
+// }
+
