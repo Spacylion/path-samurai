@@ -54,21 +54,13 @@ export const authAPI = {
         return instance
             .get(`/auth/me`)
     },
-    login() {
+    login(email, password, rememberMe = false) {
         return instance
-            .post(`/auth/login`)
+            .post(`/auth/login`, { email, password, rememberMe })
     },
     logout() {
         return instance
             .delete(`/auth/login`)
     }
 }
-
-// export const dialogsAPI = {
-//     getDialogs() {
-//         return instance
-//             .get(`/auth/me`)
-//     },
-
-// }
 

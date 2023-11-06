@@ -1,4 +1,4 @@
-import React, { Component } from "react"
+import { Component } from "react"
 import { connect } from "react-redux"
 import {
   getStatus,
@@ -10,7 +10,7 @@ import { compose } from "redux"
 
 class ProfileContainer extends Component {
   componentDidMount() {
-    const { userId } = this.props // Получаем userId из props
+    const { userId } = this.props
     const targetUserId = userId || 8
 
     // Вызываем нужные методы при монтировании компонента
@@ -19,7 +19,7 @@ class ProfileContainer extends Component {
   }
 
   handleUpdateStatus = () => {
-    const { userId } = this.props // Получаем userId из props
+    const { userId } = this.props
     const targetUserId = userId || 8
     this.props.updateStatus(targetUserId)
   }
