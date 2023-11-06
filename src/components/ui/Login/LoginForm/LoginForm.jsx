@@ -1,5 +1,5 @@
 import { Field, reduxForm } from "redux-form"
-import { Input } from "../../../../Features/FormsControls/FromsControls"
+import { Input } from "../../../../Features/FormsControls/FormsControls"
 import {
   maxLengthCreator,
   minLengthCreator,

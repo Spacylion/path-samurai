@@ -1,7 +1,7 @@
 import { Field, reduxForm } from "redux-form"
 import s from "./MyPosts.module.css"
 import { maxLengthCreator, requiredField } from "../../../../utils/validators" // Импортируйте функцию requiredField
-import { Textarea } from "../../../../Features/FormsControls/FromsControls"
+import { Textarea } from "../../../../Features/FormsControls/FormsControls"
 
 const maxLength10 = maxLengthCreator(10)
 
