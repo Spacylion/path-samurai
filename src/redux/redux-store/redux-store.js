@@ -7,6 +7,7 @@ import friendsReducer from '../reducers/friendsReducer';
 import dialogsReducer from '../reducers/dialogsReducer';
 import usersReducer from '../reducers/usersReducer';
 import authReducer from '../reducers/authReducer';
+import appReducer from '../reducers/appReducer';
 
 // Объединяем редукторы в один корневой редуктор
 let reducers = combineReducers({
@@ -15,7 +16,8 @@ let reducers = combineReducers({
     dialogsPage: dialogsReducer,
     usersPage: usersReducer,
     auth: authReducer,
-    form: formReducer
+    form: formReducer,
+    app: appReducer
 });
 
 // Создаем хранилище, используя корневой редуктор

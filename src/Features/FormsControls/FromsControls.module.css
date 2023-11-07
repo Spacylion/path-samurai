@@ -1,10 +1,16 @@
 .form__control.error input,
 .form__control.error textarea {
-  border-width: 5px; /* Используйте border-width, а не border-color */
+  border-width: 2px; /* Используйте border-width, а не border-color */
   border-style: solid; /* Укажите стиль границы, например, solid */
   border-color: red;
 }
 
 .form__control.error span {
   color: red;
+}
+.form__summery__error {
+  border-style: solid; /* Укажите стиль границы, например, solid */
+  border-color: rgb(255, 72, 0) (224, 28, 28);
+  padding: 5px;
+  color: rgb(228, 92, 92);
 }

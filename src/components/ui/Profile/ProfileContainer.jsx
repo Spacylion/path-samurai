@@ -10,17 +10,23 @@ import { compose } from "redux"
 
 class ProfileContainer extends Component {
   componentDidMount() {
-    const { userId } = this.props
-    const targetUserId = userId || 8
+    const targetUserId = this.props.authorizedUserId
 
     // Вызываем нужные методы при монтировании компонента
     this.props.getUserProfile(targetUserId)
     this.props.getStatus(targetUserId)
+
+    if (!targetUserId) {
+      targetUserId = this.props.authorizedUserId
+      if (!targetUserId) {
+        this.props.history.push("/login")
+      }
+    }
   }
 
   handleUpdateStatus = () => {
     const { userId } = this.props
-    const targetUserId = userId || 8
+    const targetUserId = userId
     this.props.updateStatus(targetUserId)
   }
 
@@ -41,6 +47,8 @@ class ProfileContainer extends Component {
 const mapStateToProps = (state) => ({
   profile: state.profilePage.profile,
   status: state.profilePage.status,
+  authorizedUserId: state.auth.userId,
+  isAuth: state.auth.isAuth,
 })
 
 export default compose(

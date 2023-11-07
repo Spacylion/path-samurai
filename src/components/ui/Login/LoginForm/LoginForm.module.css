@@ -1,0 +1,6 @@
+.form__summery__error {
+  border-style: solid; /* Укажите стиль границы, например, solid */
+  border-color: rgb(255, 72, 0) (224, 28, 28);
+  padding: 5px;
+  color: rgb(228, 92, 92);
+}

@@ -9,7 +9,7 @@ let initialState = {
     users: [],
     pageSize: 5,
     totalUsersCount: 0,
-    currentPage: 1,
+    page: 1,
     isFetching: false,
     followingInProgress: []
 }
@@ -47,7 +47,7 @@ const usersReducer = (state = initialState, action) => {
             }
         case SET_CURRENT_PAGE:
             return {
-                ...state, currentPage: action.currentPage
+                ...state, page: action.page
             }
         case SET_TOTAL_USERS_COUNT:
             return {
@@ -72,17 +72,17 @@ const usersReducer = (state = initialState, action) => {
 export const followSuccess = (userId) => ({ type: FOLLOW_BUTTON, userId })
 export const unfollowSuccess = (userId) => ({ type: UNFOLLOW_BUTTON, userId })
 export const setUsers = (users) => ({ type: SET_USERS, users })
-export const setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage: currentPage })
+export const setCurrentPage = (page) => ({ type: SET_CURRENT_PAGE, page: page })
 export const setTotalUsersCount = (totalUsersCount) => ({ type: SET_TOTAL_USERS_COUNT, count: totalUsersCount })
 export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching })
 export const toggleFollowingProgress = (isFetching, userId) => ({ type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId })
 
 // thunks creators
-export const getUsers = (currentPage, pageSize) => {
+export const getUsers = (page, pageSize) => {
     return (dispatch) => {
         dispatch(toggleIsFetching(true));
         usersAPI
-            .getUsers(currentPage, pageSize)
+            .getUsers(page, pageSize)
             .then((data) => {
                 dispatch(toggleIsFetching(false))
                 dispatch(setUsers(data.items))

@@ -3,6 +3,7 @@ import {
     SET_USER_DATA, LOGIN, LOGOUT
 } from "../actions/actions"
 import { authAPI } from '../../api/api'
+import { stopSubmit } from 'redux-form'
 
 let initialState = {
     userId: 2,
@@ -51,37 +52,34 @@ export const delLoginUserData = (email, password) =>
     ({ type: LOGOUT, payload: { email, password } })
 
 // thunks creators
-export const getAuthUserData = () => {
-    return (dispatch) => {
-        authAPI
-            .getAuthMe()
-            .then((response) => {
-                if (response.data.resultCode === 0) {
-                    let { id, login, email } = response.data.data
-                    dispatch(setAuthUserData(id, email, login, true))
-                }
-            })
-    }
+export const getAuthUserData = () => (dispatch) => {
+    authAPI
+        .getAuthMe()
+        .then((response) => {
+            if (response.data.resultCode === 0) {
+                let { id, login, email } = response.data.data
+                dispatch(setAuthUserData(id, email, login, true))
+            }
+        })
 }
-export const login = (email, password, rememberMe) => {
-    return (dispatch) => {
-        authAPI
-            .login(email, password, rememberMe)
-            .then((response) => {
-                if (response.data.resultCode === 0) {
-                    dispatch(getAuthUserData())
-                }
-            })
-    }
+export const login = (email, password, rememberMe) => (dispatch) => {
+    authAPI
+        .login(email, password, rememberMe)
+        .then((response) => {
+            if (response.data.resultCode === 0) {
+                dispatch(getAuthUserData())
+            } else {
+                let message = response.data.messages.length > 0 ? response.data.messages[0] : 'Some error'
+                dispatch(stopSubmit("login", { _error: message }))
+            }
+        })
 }
-export const logout = () => {
-    return (dispatch) => {
-        authAPI
-            .logout()
-            .then((response) => {
-                if (response.data.resultCode === 0) {
-                    dispatch(getAuthUserData(null, null, null, false))
-                }
-            })
-    }
+export const logout = () => (dispatch) => {
+    authAPI
+        .logout()
+        .then((response) => {
+            if (response.data.resultCode === 0) {
+                dispatch(getAuthUserData(null, null, null, false))
+            }
+        })
 }
