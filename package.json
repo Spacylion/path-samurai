@@ -22,7 +22,8 @@
     "react-router-dom": "^6.18.0",
     "redux": "^4.2.1",
     "redux-form": "^8.3.10",
-    "redux-thunk": "^2.4.2"
+    "redux-thunk": "^2.4.2",
+    "reselect": "^4.1.8"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
