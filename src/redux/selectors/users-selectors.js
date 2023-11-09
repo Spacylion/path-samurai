@@ -11,10 +11,6 @@ export const getUsersSuperSelector =
     createSelector(getUsersSelector, (users) => {
         return users.filter(u => true);
     })
-
-
-
-
 export const getPageSize = (state) => {
     return state.usersPage.pageSize;
 }

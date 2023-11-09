@@ -1,5 +1,8 @@
 import { Field, reduxForm } from "redux-form"
-import { Input } from "../../../../Features/FormsControls/FormsControls"
+import {
+  Input,
+  createField,
+} from "../../../../Features/FormsControls/FormsControls"
 import {
   maxLengthCreator,
   minLengthCreator,
@@ -8,34 +11,23 @@ import s from "./LoginForm.module.css"
 const maxLength20 = maxLengthCreator(20)
 const minLength20 = minLengthCreator(3)
 
-const LoginForm = (props) => {
+const LoginForm = ({ handleSubmit, error, onSubmit }) => {
   return (
-    <form onSubmit={props.handleSubmit(props.onSubmit)}>
-      <div>
-        <Field
-          name={"email"}
-          placeholder={"Login"}
-          component={Input}
-          validate={[maxLength20, minLength20]}
-        />
-      </div>
-      <div>
-        <Field
-          name={"password"}
-          placeholder={"Password"}
-          autoComplete='current-password'
-          type='password'
-          component={Input}
-          validate={[maxLength20, minLength20]}
-        />
-      </div>
-      <div>
-        <Field name={"rememberMe"} type='checkbox' component={Input} />
-        remember me
-      </div>
-      {props.error && (
-        <div className={s.form__summery__error}>{props.error}</div>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      {createField("email", "Login", Input, [maxLength20, minLength20])}
+      {createField("password", "Password", Input, [maxLength20, minLength20], {
+        autoComplete: "current-password",
+        type: "password",
+      })}
+      {createField(
+        "rememberMe",
+        null,
+        Input,
+        [],
+        { type: "checkbox" },
+        "remember me"
       )}
+      {error && <div className={s.form__summery__error}>{error}</div>}
       <div>
         <button>Login</button>
       </div>

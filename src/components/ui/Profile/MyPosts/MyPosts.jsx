@@ -2,8 +2,9 @@ import s from "./MyPosts.module.css"
 import Post from "./Post/Post"
 import PropTypes from "prop-types"
 import PostReduxForm from "./PostForm"
+import { memo } from "react"
 
-const MyPosts = (props) => {
+const MyPosts = memo((props) => {
   let postsElements = props.posts.map((p, index) => (
     <Post key={index} message={p.message} likesCount={p.likesCount} />
   ))
@@ -24,7 +25,7 @@ const MyPosts = (props) => {
       <div className={s.content__posts}>{postsElements}</div>
     </div>
   )
-}
+})
 
 MyPosts.propTypes = {
   posts: PropTypes.array.isRequired,

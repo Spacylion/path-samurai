@@ -17,7 +17,6 @@ import { initializeApp } from "./redux/reducers/appReducer"
 import "./styles/App.css"
 import Preloader from "./Features/Preloader/Preloader"
 import { compose } from "redux"
-import { withRouter } from "react-router/cjs/react-router"
 
 class App extends React.Component {
   componentDidMount() {

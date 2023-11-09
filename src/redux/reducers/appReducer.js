@@ -1,15 +1,10 @@
-/* eslint-disable no-case-declarations */
 import {
     SET_INITIALIZED
 } from "../actions/actions"
-import { authAPI } from '../../api/api'
-import { stopSubmit } from 'redux-form'
 import { getAuthUserData } from './authReducer'
-
 let initialState = {
     initialization: false,
 }
-
 const appReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_INITIALIZED: {
