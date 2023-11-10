@@ -1,0 +1,8 @@
+.selected {
+  font: bold;
+  font-size: 1.4rem;
+}
+
+.selected:hover {
+  pointer-events: fill;
+}
