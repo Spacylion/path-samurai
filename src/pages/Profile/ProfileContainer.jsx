@@ -7,6 +7,7 @@ import {
 } from "@/app/redux/reducers/profileReducer"
 import Profile from "./Profile"
 import { compose } from "redux"
+import { withAuthRedirect } from "@/app/auth-redirect/withAuthRedirect"
 
 class ProfileContainer extends Component {
   componentDidMount() {
@@ -56,6 +57,6 @@ export default compose(
     getUserProfile,
     getStatus,
     updateStatus,
-  })
-  // withAuthRedirect
+  }),
+  withAuthRedirect
 )(ProfileContainer)

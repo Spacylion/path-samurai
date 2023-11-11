@@ -1,5 +1,5 @@
 import s from "./Users.module.css"
-import UsersPaginator from "@/features/paginator/Paginator"
+import Paginator from "@/features/paginator/Paginator"
 import User from "./users-item/User"
 
 let Users = ({
@@ -16,7 +16,7 @@ let Users = ({
   console.log("Users array:", users)
   return (
     <div className={s.title}>
-      <UsersPaginator
+      <Paginator
         totalUsersCount={totalUsersCount}
         pageSize={pageSize}
         onPageChanged={onPageChanged}

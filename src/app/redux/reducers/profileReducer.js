@@ -6,8 +6,8 @@ import {
 
 let initialState = {
     posts: [
-        { id: 1, message: "Hii", likesCount: "1" },
-        { id: 2, message: "Hii", likesCount: "222" },
+        { id: 1, message: "Hii", likesCount: 1 },
+        { id: 2, message: "Hii", likesCount: 222 },
     ],
     newPostText: 'sss',
     profile: null,

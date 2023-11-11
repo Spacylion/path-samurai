@@ -12,9 +12,9 @@ let initialState = {
     isFecthing: false,
     isAuth: false,
     password: null,
-    rememderMe: false,
+    rememberMe: false,
     captcha: false
-}
+};
 
 const authReducer = (state = initialState, action) => {
     switch (action.type) {

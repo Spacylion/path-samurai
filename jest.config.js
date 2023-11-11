@@ -1,6 +1,8 @@
 /** @type {import('jest').Config} */
-const config = {
+module.exports = {
     verbose: true,
+    setupFilesAfterEnv: ["@testing-library/react"],
+    moduleNameMapper: {
+        "\\.(css|less)$": "identity-obj-proxy",
+    },
 };
-
-module.exports = config;
