@@ -3,28 +3,38 @@ import s from "./Paginator.module.css"
 import cn from "classnames"
 
 const Paginator = ({
-  totalUsersCount,
+  totalItemsCount,
   pageSize,
   onPageChanged,
   currentPage,
   portionSize = 10,
 }) => {
-  let pagesCount = Math.ceil(totalUsersCount / pageSize)
-  if (totalUsersCount === 0 || pageSize === 0) {
-    return null // or some default behavior
-  }
-  let pages = []
-  for (let i = 1; i <= pagesCount; i++) {
-    pages.push(i)
+  if (
+    totalItemsCount === 0 ||
+    pageSize === 0 ||
+    portionSize > totalItemsCount
+  ) {
+    return null
   }
 
-  let portionCount = Math.ceil(pagesCount / portionSize)
-  let [portionNumber, setPortionNumber] = useState(1)
-  let leftPortionPageNumber = (portionNumber - 1) * portionSize + 1
-  let rightPortionPageNumber = portionNumber * portionSize
+  const pagesCount = Math.ceil(totalItemsCount / pageSize)
+  const pages = Array.from({ length: pagesCount }, (_, index) => index + 1)
+
+  const portionCount = Math.ceil(pagesCount / portionSize)
+  const [portionNumber, setPortionNumber] = useState(1)
+  const leftPortionPageNumber = (portionNumber - 1) * portionSize + 1
+  const rightPortionPageNumber = Math.min(
+    portionNumber * portionSize,
+    pagesCount
+  )
 
   return (
-    <div className={s.title}>
+    <div className={s.title + s.paginator}>
+      {portionNumber > 1 && (
+        <button onClick={() => setPortionNumber(portionNumber - 1)}>
+          Previous
+        </button>
+      )}
       <div>
         {pages
           .filter(
@@ -37,13 +47,16 @@ const Paginator = ({
                 [s.selectedPage]: currentPage === p,
                 [s.pageNumber]: true,
               })}
-              onClick={() => {
-                onPageChanged(p)
-              }}
+              onClick={() => onPageChanged(p)}
             >
               {p}
             </span>
           ))}
+        {portionNumber < portionCount && (
+          <button onClick={() => setPortionNumber(portionNumber + 1)}>
+            Next
+          </button>
+        )}
       </div>
     </div>
   )
