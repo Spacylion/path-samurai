@@ -6,7 +6,7 @@ const Paginator = ({
   totalUsersCount,
   pageSize,
   onPageChanged,
-  currentPage, // Changed from 'page' to 'currentPage' for consistency
+  currentPage,
   portionSize = 10,
 }) => {
   let pagesCount = Math.ceil(totalUsersCount / pageSize)
