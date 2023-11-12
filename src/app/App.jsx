@@ -56,6 +56,7 @@ let AppContainer = compose(connect(mapStateToProps, { initializeApp })(App))
 
 let MainApp = (props) => {
   return (
+    // <BrowserRouter basename={process.env.PUBLIC_URL}>
     <BrowserRouter>
       <Provider store={store}>
         <AppContainer store={store} />
