@@ -1,10 +1,10 @@
-const path = require('path');
+import { defineConfig } from 'vite';
+import path from 'path';
 
-module.exports = {
+export default defineConfig({
     resolve: {
         alias: {
             '@': path.resolve(__dirname, 'src'),
         },
-        extensions: ['.js', '.jsx'],
     },
-};
+});
