@@ -14,8 +14,8 @@ import { Provider, connect } from "react-redux"
 import { initializeApp } from "./redux/reducers/appReducer"
 import "./styles/App.css"
 import Preloader from "@/features/preloader/Preloader"
-import { compose } from "redux"
 import store from "./redux/redux-store/redux-store"
+import { compose } from "redux"
 
 class App extends React.Component {
   componentDidMount() {
