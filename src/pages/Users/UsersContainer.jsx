@@ -8,7 +8,7 @@ import {
   getUsers as getUsersAction, // Import getUsers as getUsersAction
 } from "../../app/redux/reducers/usersReducer"
 import Users from "./Users"
-import Preloader from "../../features/preloader/Preloader"
+import Preloader from "../../features/Preloader/Preloader"
 import {
   getCurrentPage,
   getFollowingInProgress,
