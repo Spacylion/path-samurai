@@ -1,5 +1,5 @@
-import ViteAliases from 'vite-aliases';
+const ViteAliases = require('vite-aliases');
 
 export default {
-    plugins: [ViteAliases()]
+    plugins: [ViteAliases()],
 };
