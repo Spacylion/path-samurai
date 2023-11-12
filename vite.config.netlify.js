@@ -1,6 +1,6 @@
-import path from 'path';
+const path = require('path');
 
-export default {
+module.exports = {
     resolve: {
         alias: {
             '@': path.resolve(__dirname, 'src'),
