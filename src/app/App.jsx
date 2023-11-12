@@ -13,7 +13,7 @@ import Footer from "@/widgets/Footer/Footer"
 import { Provider, connect } from "react-redux"
 import { initializeApp } from "./redux/reducers/appReducer"
 import "./styles/App.css"
-import Preloader from "@/features/Preloader/Preloader"
+import Preloader from "../features/Preloader/Preloader"
 import store from "./redux/redux-store/redux-store"
 import { compose } from "redux"
 
