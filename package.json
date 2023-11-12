@@ -24,7 +24,8 @@
     "redux": "^4.2.1",
     "redux-form": "^8.3.10",
     "redux-thunk": "^2.4.2",
-    "reselect": "^4.1.8"
+    "reselect": "^4.1.8",
+    "vite-aliases": "^0.11.3"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.23.3",
