@@ -2,7 +2,7 @@
 import {
     SET_USER_DATA, LOGIN, LOGOUT
 } from "../actions/actions"
-import { authAPI } from '@/shared/api/api'
+import { authAPI } from '../../../shared/api/api'
 import { stopSubmit } from 'redux-form'
 
 let initialState = {

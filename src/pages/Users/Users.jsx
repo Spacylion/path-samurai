@@ -1,5 +1,5 @@
 import s from "./Users.module.css"
-import Paginator from "@/features/paginator/Paginator"
+import Paginator from "../../features/paginator/Paginator"
 import User from "./users-item/User"
 
 let Users = ({

@@ -1,6 +1,12 @@
 import { reduxForm } from "redux-form"
-import { Input, createField } from "@/features/forms-controls/FormsControls"
-import { maxLengthCreator, minLengthCreator } from "@/features/input-validators"
+import {
+  Input,
+  createField,
+} from "../../../features/forms-controls/FormsControls"
+import {
+  maxLengthCreator,
+  minLengthCreator,
+} from "../../../features/input-validators"
 import s from "./LoginForm.module.css"
 const maxLength20 = maxLengthCreator(20)
 const minLength20 = minLengthCreator(3)

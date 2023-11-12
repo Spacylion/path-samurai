@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
 import LoginReduxForm from "./LoginForm/LoginForm"
-import { login } from "@/app/redux/reducers/authReducer"
+import { login } from "../../app/redux/reducers/authReducer"
 import { Navigate } from "react-router-dom"
 
 const Login = (props) => {

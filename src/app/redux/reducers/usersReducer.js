@@ -1,5 +1,5 @@
-import { usersAPI } from '@/shared/api/api'
-import { updateObjectInArray } from '@/features/input-validators/object-helpers'
+import { usersAPI } from '../../../shared/api/api'
+import { updateObjectInArray } from '../../../features/input-validators/object-helpers'
 import {
     FOLLOW_BUTTON, UNFOLLOW_BUTTON, SET_USERS,
     SET_CURRENT_PAGE, SET_TOTAL_USERS_COUNT, TOGGLE_IS_FETCHING,

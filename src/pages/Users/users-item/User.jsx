@@ -1,6 +1,6 @@
 // User.jsx
 import { NavLink } from "react-router-dom"
-import userPhoto from "@/app/assets/avatar.png"
+import userPhoto from "../../../app/assets/avatar.png"
 import s from "./User.module.css"
 
 let User = ({ user, followingInProgress, follow, unfollow }) => {

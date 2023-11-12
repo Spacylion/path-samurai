@@ -1,4 +1,4 @@
-import { profileAPI } from '@/shared/api/api';
+import { profileAPI } from '../../../shared/api/api';
 import {
     ADD_POST, SET_USER_PROFILE,
     SET_STATUS, DELETE_POST

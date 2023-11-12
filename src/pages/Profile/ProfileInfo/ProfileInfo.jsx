@@ -1,4 +1,4 @@
-import Preloader from "@/features/preloader/Preloader"
+import Preloader from "../../../features/Preloader/Preloader"
 import s from "./ProfileInfo.module.css"
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks"
 
