@@ -1,7 +1,7 @@
+import ReactDOM from "react-dom/client"
 import { Routes, Route, BrowserRouter } from "react-router-dom"
 import React from "react"
 import News from "../pages/News/News"
-
 import Music from "../pages/Music/Music"
 import Settings from "../pages/Settings/Settings"
 import DialogsContainer from "../pages/Dialogs/DialogsContainer"
