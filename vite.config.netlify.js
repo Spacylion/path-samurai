@@ -1,5 +1,9 @@
-const ViteAliases = require('vite-aliases');
+import path from 'path';
 
 export default {
-    plugins: [ViteAliases()],
+    resolve: {
+        alias: {
+            '@': path.resolve(__dirname, 'src'),
+        },
+    },
 };
