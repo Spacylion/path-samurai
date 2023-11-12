@@ -1,10 +1,11 @@
-import ReactDOM from "react-dom/client"
-// import App from "@/app/App"
+import React from "react"
+import ReactDOM from "react-dom"
+import { createRoot } from "react-dom"
+import MainApp from "./app/App"
 import store from "./app/redux/redux-store/redux-store"
 import "./app/styles/reset.css"
 import "./app/styles/fonts.css"
-import MainApp from "./app/App"
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <MainApp store={store} />
-)
+const rootElement = document.getElementById("root")
+
+createRoot(rootElement).render(<MainApp store={store} />)
