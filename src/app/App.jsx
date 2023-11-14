@@ -1,5 +1,4 @@
 import React from "react"
-import ReactDOM from "react-dom/client"
 import { Routes, Route, BrowserRouter } from "react-router-dom"
 import News from "../pages/News/News"
 import Music from "../pages/Music/Music"
@@ -22,6 +21,7 @@ class App extends React.Component {
   componentDidMount() {
     this.props.initializeApp()
   }
+
   render() {
     if (!this.props.initialization) {
       return <Preloader />
@@ -52,21 +52,16 @@ const mapStateToProps = (state) => ({
   initialization: state.app.initialization,
 })
 
-let AppContainer = compose(connect(mapStateToProps, { initializeApp })(App))
+const AppContainer = compose(connect(mapStateToProps, { initializeApp }))(App)
 
-let MainApp = (props) => {
+const MainApp = (props) => {
   return (
-    // <BrowserRouter basename={process.env.PUBLIC_URL}>
     <BrowserRouter>
       <Provider store={store}>
-        <AppContainer store={store} />
+        <AppContainer />
       </Provider>
     </BrowserRouter>
   )
 }
-
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <MainApp store={store} />
-)
 
 export default MainApp

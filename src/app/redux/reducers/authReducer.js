@@ -2,18 +2,18 @@
 import {
     SET_USER_DATA, LOGIN, LOGOUT
 } from "../actions/actions"
-import { authAPI } from '../../../shared/api/api'
+import { authAPI } from '@/shared/api/api'
 import { stopSubmit } from 'redux-form'
 
 let initialState = {
-    userId: 2,
+    userId: null,
     email: null,
     login: null,
-    isFecthing: false,
     isAuth: false,
-    password: null,
-    rememberMe: false,
-    captcha: false
+    // isFecthing: false,
+    // password: null,
+    // rememberMe: false,
+    // captcha: false
 };
 
 const authReducer = (state = initialState, action) => {
@@ -43,7 +43,7 @@ const authReducer = (state = initialState, action) => {
 }
 
 // actionsCreators
-export default authReducer
+export default authReducer;
 export const setAuthUserData = (userId, email, login, isAuth) =>
     ({ type: SET_USER_DATA, payload: { userId, email, login, isAuth } })
 export const setLoginUserData = (email, password) =>
@@ -63,7 +63,6 @@ export const getAuthUserData = () => async (dispatch) => {
 export const login = (email, password, rememberMe) => async (dispatch) => {
     let response = await authAPI
         .login(email, password, rememberMe)
-
     if (response.data.resultCode === 0) {
         dispatch(getAuthUserData())
     } else {

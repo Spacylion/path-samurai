@@ -1,8 +1,8 @@
 import * as serviceWorker from "./serviceWorker"
 import React from "react"
-import ReactDOM from "react-dom"
+import ReactDOM from "react-dom/client"
 import "@/app/styles/reset.css"
 import "@/app/styles/fonts.css"
 import MainApp from "./app/App"
 
-ReactDOM.render(<MainApp />, document.getElementById("root"))
+ReactDOM.createRoot(document.getElementById("root")).render(<MainApp />)

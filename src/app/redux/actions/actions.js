@@ -21,4 +21,5 @@ export const TOGGLE_IS_FOLLOWING_PROGRESS = `${net}users/TOGGLE_IS_FOLLOWING_PRO
 export const LOGIN = `${net}auth/LOGIN`
 export const LOGOUT = `${net}auth/LOGOUT`
 export const SET_USER_DATA = `${net}auth/SET_USER_DATA`
+export const SAVE_PHOTO_SUCCESS = `${net}auth/SAVE_PHOTO_SUCCESS`
 

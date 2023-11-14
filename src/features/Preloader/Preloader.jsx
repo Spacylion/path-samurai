@@ -1,6 +1,6 @@
-import preloader from "../../app/assets/loading.svg"
+import preloader from "@/app/assets/loading.svg"
 
-let Preloader = () => {
+let Preloader = (props) => {
   return (
     <div>
       <img src={preloader} />

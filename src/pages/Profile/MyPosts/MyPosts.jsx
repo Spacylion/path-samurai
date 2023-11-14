@@ -1,26 +1,28 @@
+import React from "react"
 import { memo } from "react"
-import PropTypes from "prop-types"
 import s from "./MyPosts.module.css"
 import Post from "./Post/Post"
-import PostReduxForm from "./PostForm"
+import AddNewPostFormRedux from "./PostForm"
 
-const MyPosts = memo(({ posts, addPost }) => {
-  console.log(posts)
-  const postsElements = posts.map((p) => (
-    <Post key={String(p.id)} message={p.message} likesCount={p.likesCount} />
-  ))
+const MyPosts = memo((props) => {
+  let postsElements = [...props.posts]
+    .reverse()
+    .map((p) => (
+      <Post key={p.id} message={p.message} likeCount={p.likesCount} />
+    ))
+
+  const newPostElement = React.createRef()
 
   const onAddPost = (values) => {
-    addPost(values.newPostText)
+    props.addPost(values.newPostText)
   }
 
   return (
     <div className={s.content}>
       <div className={s.content__item}>
         <h3>My posts</h3>
-
         <div className={s.content__new__profile}>
-          <PostReduxForm onSubmit={onAddPost} />
+          <AddNewPostFormRedux onSubmit={onAddPost} />
         </div>
       </div>
       <div className={s.content__posts}>{postsElements}</div>
@@ -28,16 +30,5 @@ const MyPosts = memo(({ posts, addPost }) => {
   )
 })
 MyPosts.displayName = "MyPosts"
-
-MyPosts.propTypes = {
-  posts: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      message: PropTypes.string.isRequired,
-      likesCount: PropTypes.number.isRequired, // Change this to number
-    })
-  ).isRequired,
-  addPost: PropTypes.func.isRequired,
-}
 
 export default MyPosts

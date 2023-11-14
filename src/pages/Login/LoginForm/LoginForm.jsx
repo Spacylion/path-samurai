@@ -1,29 +1,20 @@
 import { reduxForm } from "redux-form"
-import {
-  Input,
-  createField,
-} from "../../../features/forms-controls/FormsControls"
-import {
-  maxLengthCreator,
-  minLengthCreator,
-} from "../../../features/input-validators"
+import { Input, createField } from "@/features/forms-controls/FormsControls"
 import s from "./LoginForm.module.css"
-const maxLength20 = maxLengthCreator(20)
-const minLength20 = minLengthCreator(3)
 
 const LoginForm = ({ handleSubmit, error, onSubmit }) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      {createField("email", "Login", Input, [maxLength20, minLength20])}
-      {createField("password", "Password", Input, [maxLength20, minLength20], {
+      {createField("Email", "email", [required], Input)}
+      {createField("Password", "password", [required], Input, {
         autoComplete: "current-password",
         type: "password",
       })}
       {createField(
-        "rememberMe",
         null,
-        Input,
+        "rememberMe",
         [],
+        Input,
         { type: "checkbox" },
         "remember me"
       )}

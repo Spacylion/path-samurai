@@ -1,0 +1,12 @@
+.content__profile {
+  padding: 10px;
+}
+.contact {
+  padding-left: 10px;
+}
+.form__summery__error {
+  border-style: solid;
+  border-color: rgb(255, 72, 0) (224, 28, 28);
+  padding: 5px;
+  color: rgb(228, 92, 92);
+}
