@@ -18,8 +18,7 @@ export const SET_TOTAL_USERS_COUNT = `${net}users/SET_TOTAL_USERS_COUNT`
 export const TOGGLE_IS_FETCHING = `${net}users/TOGGLE_IS_FETCHING`
 export const TOGGLE_IS_FOLLOWING_PROGRESS = `${net}users/TOGGLE_IS_FOLLOWING_PROGRESS`
 // auth
-export const LOGIN = `${net}auth/LOGIN`
-export const LOGOUT = `${net}auth/LOGOUT`
 export const SET_USER_DATA = `${net}auth/SET_USER_DATA`
 export const SAVE_PHOTO_SUCCESS = `${net}auth/SAVE_PHOTO_SUCCESS`
+export const GET_CAPTCHA_URL_SUCCESS = `${net}auth/GET_CAPTCHA_URL_SUCCESS`
 

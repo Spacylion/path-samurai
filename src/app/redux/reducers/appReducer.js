@@ -3,14 +3,14 @@ import {
 } from "../actions/actions"
 import { getAuthUserData } from './authReducer'
 let initialState = {
-    initialization: false,
+    initialized: false,
 }
 const appReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_INITIALIZED: {
             return {
                 ...state,
-                initialization: true,
+                initialized: true,
             }
         }
         default:

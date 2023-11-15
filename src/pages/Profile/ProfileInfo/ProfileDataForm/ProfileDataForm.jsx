@@ -1,15 +1,16 @@
 import { createField } from "@/features/forms-controls/FormsControls"
-import { Input } from "@/features/forms-controls/FormsControls"
+import { Input, Textarea } from "@/features/forms-controls/FormsControls"
 import { reduxForm } from "redux-form"
+
 import s from "./ProfileDataForm.module.css"
 
 const ProfileDataForm = ({ handleSubmit, profile, error }) => {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <button>save</button>
+        <button>Save</button>
       </div>
-      {error && <div className={s.form__summery__error}>{error}</div>}
+      {error && <div className={s.form__summary__error}>{error}</div>}
 
       <div>
         <b>Full name:</b>
@@ -25,12 +26,12 @@ const ProfileDataForm = ({ handleSubmit, profile, error }) => {
           "My professional skills",
           "lookingForAJobDescription",
           [],
-          TextArea
+          Textarea
         )}
       </div>
       <div>
         <b>About me:</b>
-        {createField("About me", "aboutMe", [], TextArea)}
+        {createField("About me", "aboutMe", [], Textarea)}
       </div>
       <div>
         <b>Contacts:</b>
@@ -38,7 +39,7 @@ const ProfileDataForm = ({ handleSubmit, profile, error }) => {
           return (
             <div key={key} className={s.contact}>
               <b>
-                {key}:{createField(key, "contacts." + key, [], Input)}
+                {key}:{createField(key, `contacts.${key}`, [], Input)}
               </b>
             </div>
           )

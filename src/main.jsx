@@ -1,8 +1,8 @@
 import * as serviceWorker from "./serviceWorker"
-import React from "react"
-import ReactDOM from "react-dom/client"
+import { createRoot } from "react-dom/client"
+import MainApp from "./app/App"
 import "@/app/styles/reset.css"
 import "@/app/styles/fonts.css"
-import MainApp from "./app/App"
 
-ReactDOM.createRoot(document.getElementById("root")).render(<MainApp />)
+createRoot(document.getElementById("root")).render(<MainApp />)
+serviceWorker.unregister()

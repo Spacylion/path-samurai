@@ -1,4 +1,4 @@
-import { Component } from "react"
+import { useEffect } from "react"
 import { connect } from "react-redux"
 import {
   getStatus,
@@ -8,44 +8,46 @@ import {
   saveProfile,
 } from "@/app/redux/reducers/profileReducer"
 import Profile from "./Profile"
-import { compose } from "redux"
+import { useParams } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
-class ProfileContainer extends Component {
-  refreshProfile() {
-    let userId = this.props.match.params.userId
-    if (!userId) {
-      userId = this.props.authorizedUserId
-      if (!userId) {
-        this.props.history.push("/login")
-        return
-      }
+const ProfileContainer = ({
+  profile,
+  status,
+  authorizedUserId,
+  getUserProfile,
+  getStatus,
+  updateStatus,
+  savePhoto,
+  saveProfile,
+}) => {
+  const { userId } = useParams()
+  const navigate = useNavigate()
+
+  const refreshProfile = () => {
+    let userIdParam = userId || authorizedUserId
+    if (!userIdParam) {
+      navigate("/login")
+      return
     }
-    this.props.getUserProfile(userId)
-    this.props.getStatus(userId)
+    getUserProfile(userIdParam)
+    getStatus(userIdParam)
   }
 
-  componentDidMount() {
-    this.refreshProfile()
-  }
+  useEffect(() => {
+    refreshProfile()
+  }, [userId, authorizedUserId, getUserProfile, getStatus])
 
-  componentDidUpdate(prevProps) {
-    if (this.props.match.params.userId !== prevProps.match.params.userId) {
-      this.refreshProfile()
-    }
-  }
-
-  render() {
-    return (
-      <Profile
-        {...this.props}
-        isOwner={!this.props.match.params.userId}
-        profile={this.props.profile}
-        status={this.props.status}
-        updateStatus={this.props.updateStatus}
-        savePhoto={this.props.savePhoto}
-      />
-    )
-  }
+  return (
+    <Profile
+      isOwner={!userId}
+      profile={profile}
+      status={status}
+      updateStatus={updateStatus}
+      savePhoto={savePhoto}
+      saveProfile={saveProfile}
+    />
+  )
 }
 
 const mapStateToProps = (state) => ({
@@ -55,12 +57,10 @@ const mapStateToProps = (state) => ({
   isAuth: state.auth.isAuth,
 })
 
-export default compose(
-  connect(mapStateToProps, {
-    getUserProfile,
-    getStatus,
-    updateStatus,
-    savePhoto,
-    saveProfile,
-  })
-)(ProfileContainer)
+export default connect(mapStateToProps, {
+  getUserProfile,
+  getStatus,
+  updateStatus,
+  savePhoto,
+  saveProfile,
+})(ProfileContainer)

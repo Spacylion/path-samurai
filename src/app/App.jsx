@@ -1,5 +1,12 @@
-import React from "react"
-import { Routes, Route, BrowserRouter } from "react-router-dom"
+import { useEffect } from "react"
+import {
+  Routes,
+  Route,
+  BrowserRouter,
+  Navigate,
+  useParams,
+  useNavigate, // Импортируем useNavigate вместо useHistory
+} from "react-router-dom"
 import News from "../pages/News/News"
 import Music from "../pages/Music/Music"
 import Settings from "../pages/Settings/Settings"
@@ -15,50 +22,51 @@ import { initializeApp } from "./redux/reducers/appReducer"
 import "./styles/App.css"
 import Preloader from "../features/Preloader/Preloader"
 import store from "./redux/redux-store/redux-store"
-import { compose } from "redux"
 
-class App extends React.Component {
-  componentDidMount() {
-    this.props.initializeApp()
+const App = ({ initializeApp, initialized }) => {
+  const navigate = useNavigate() // Заменяем useHistory на useNavigate
+
+  useEffect(() => {
+    initializeApp()
+  }, [initializeApp])
+
+  if (!initialized) {
+    return <Preloader />
   }
 
-  render() {
-    if (!this.props.initialization) {
-      return <Preloader />
-    }
-
-    return (
-      <div className='app-wrapper'>
-        <HeaderContainer />
-        <Navbar />
-        <div className='app-wrapper-content'>
-          <Routes>
-            <Route path='/login' element={<LoginPage />} />
-            <Route path='/dialogs' element={<DialogsContainer />} />
-            <Route path='/profile/:userId?' element={<ProfileContainer />} />
-            <Route path='/users' element={<UsersContainer />} />
-            <Route path='/news' element={<News />} />
-            <Route path='/music' element={<Music />} />
-            <Route path='/settings' element={<Settings />} />
-          </Routes>
-        </div>
-        <Footer />
+  return (
+    <div className='app-wrapper'>
+      <HeaderContainer />
+      <Navbar />
+      <div className='app-wrapper-content'>
+        <Routes>
+          {/* <Route path='/' element={<Navigate to='/profile' />} /> */}
+          <Route path='/login' element={<LoginPage />} />
+          <Route path='/dialogs' element={<DialogsContainer />} />
+          <Route path='/profile/:userId?' element={<ProfileContainer />} />
+          <Route path='/users' element={<UsersContainer />} />
+          <Route path='/news' element={<News />} />
+          <Route path='/music' element={<Music />} />
+          <Route path='/settings' element={<Settings />} />
+          <Route path='*' element={<Navigate to='/' />} />
+        </Routes>
       </div>
-    )
-  }
+      <Footer />
+    </div>
+  )
 }
 
 const mapStateToProps = (state) => ({
-  initialization: state.app.initialization,
+  initialized: state.app.initialized,
 })
 
-const AppContainer = compose(connect(mapStateToProps, { initializeApp }))(App)
+const AppConnected = connect(mapStateToProps, { initializeApp })(App)
 
 const MainApp = (props) => {
   return (
     <BrowserRouter>
       <Provider store={store}>
-        <AppContainer />
+        <AppConnected />
       </Provider>
     </BrowserRouter>
   )

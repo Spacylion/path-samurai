@@ -5,53 +5,42 @@ import {
   unfollow,
   setCurrentPage,
   toggleFollowingProgress,
-  getUsers as getUsersAction, // Import getUsers as getUsersAction
-} from "../../app/redux/reducers/usersReducer"
+  getUsers as getUsersAction,
+} from "@/app/redux/reducers/usersReducer"
 import Users from "./Users"
-import Preloader from "../../features/Preloader/Preloader"
+import Preloader from "@/features/Preloader/Preloader"
 import {
   getCurrentPage,
   getFollowingInProgress,
   getPageSize,
   getTotalUsersCount,
   getUsersSuperSelector,
-} from "../../app/redux/selectors/users-selectors"
+} from "@/app/redux/selectors/users-selectors"
 
 class UsersContainer extends Component {
   componentDidMount() {
-    const { page, pageSize } = this.props
-    this.props.getUsers(page, pageSize) // Dispatch getUsers using this.props
+    const { currentPage, pageSize } = this.props
+    this.props.getUsers(currentPage, pageSize)
   }
 
   onPageChanged = (pageNumber) => {
     const { pageSize } = this.props
-    this.props.getUsers(pageNumber, pageSize) // Dispatch getUsers using this.props
+    this.props.getUsers(pageNumber, pageSize)
   }
 
   render() {
-    const {
-      isFetching,
-      totalUsersCount,
-      pageSize,
-      page,
-      users,
-      follow,
-      unfollow,
-      followingInProgress,
-    } = this.props
-
     return (
       <>
-        {isFetching ? <Preloader /> : null}
+        {this.props.isFetching ? <Preloader /> : null}
         <Users
-          totalUsersCount={totalUsersCount}
-          pageSize={pageSize}
-          page={page}
+          totalUsersCount={this.props.totalUsersCount}
+          pageSize={this.props.pageSize}
+          currentPage={this.props.currentPage}
           onPageChanged={this.onPageChanged}
-          users={users}
-          follow={follow}
-          unfollow={unfollow}
-          followingInProgress={followingInProgress}
+          users={this.props.users}
+          follow={this.props.follow}
+          unfollow={this.props.unfollow}
+          followingInProgress={this.props.followingInProgress}
         />
       </>
     )
@@ -63,7 +52,7 @@ const mapStateToProps = (state) => {
     users: getUsersSuperSelector(state),
     pageSize: getPageSize(state),
     totalUsersCount: getTotalUsersCount(state),
-    page: getCurrentPage(state),
+    currentPage: getCurrentPage(state),
     followingInProgress: getFollowingInProgress(state),
     isFetching: state.usersPage.isFetching,
   }
@@ -74,7 +63,7 @@ const mapDispatchToProps = {
   unfollow,
   setCurrentPage,
   toggleFollowingProgress,
-  getUsers: getUsersAction, // Use the imported getUsersAction
+  getUsers: getUsersAction,
 }
 
 const ConnectedUsersContainer = connect(

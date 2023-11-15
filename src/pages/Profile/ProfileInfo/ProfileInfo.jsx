@@ -7,8 +7,9 @@ import ProfileDataFormReduxForm from "./ProfileDataForm/ProfileDataForm"
 
 const ProfileInfo = ({
   profile,
-  status,
+  status: string,
   updateStatus,
+  isOwner,
   savePhoto,
   saveProfile,
 }) => {
