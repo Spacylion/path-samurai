@@ -1,3 +1,4 @@
+import React from "react"
 import preloader from "@/app/assets/loading.svg"
 
 let Preloader = (props) => {

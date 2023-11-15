@@ -1,4 +1,4 @@
-// User.jsx
+import React from "react"
 import { NavLink } from "react-router-dom"
 import userPhoto from "../../../app/assets/avatar.png"
 import s from "./User.module.css"

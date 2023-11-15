@@ -1,3 +1,4 @@
+import React from "react"
 import { connect } from "react-redux"
 import LoginReduxForm from "./LoginForm/LoginForm"
 import { login } from "../../app/redux/reducers/authReducer"

@@ -1,8 +1,8 @@
+import React, { useState } from "react"
 import Preloader from "@/features/Preloader/Preloader"
 import s from "./ProfileInfo.module.css"
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks"
 import userPhoto from "@/app/assets/avatar.png"
-import { useState } from "react"
 import ProfileDataFormReduxForm from "./ProfileDataForm/ProfileDataForm"
 
 const ProfileInfo = ({
