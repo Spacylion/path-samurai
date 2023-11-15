@@ -1,9 +1,8 @@
-/* eslint-disable react/prop-types */
+import React from "react"
 import Friends from "./Friends/Friends"
 import s from "./Navbar.module.css"
 
 const Navbar = (props) => {
-  // Assuming you have a `friends` property in your Redux state
   return (
     <nav className={s.nav}>
       <div className={s.nav__item}>
