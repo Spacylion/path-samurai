@@ -10,9 +10,6 @@ const Paginator = ({
   portionSize = 10,
 }) => {
   let pagesCount = Math.ceil(totalUsersCount / pageSize)
-  if (totalUsersCount === 0 || pageSize === 0) {
-    return null // or some default behavior
-  }
   let pages = []
   for (let i = 1; i <= pagesCount; i++) {
     pages.push(i)
@@ -23,28 +20,40 @@ const Paginator = ({
   let leftPortionPageNumber = (portionNumber - 1) * portionSize + 1
   let rightPortionPageNumber = portionNumber * portionSize
 
+  const handlePageClick = (pageNumber) => {
+    onPageChanged(pageNumber)
+  }
+
   return (
-    <div className={s.title}>
-      <div>
-        {pages
-          .filter(
-            (p) => p >= leftPortionPageNumber && p <= rightPortionPageNumber
-          )
-          .map((p) => (
-            <span
-              key={p}
-              className={cn({
+    <div className={s.paginator}>
+      {portionNumber > 1 && (
+        <button onClick={() => setPortionNumber(portionNumber - 1)}>
+          PREV
+        </button>
+      )}
+      {pages
+        .filter(
+          (p) => p >= leftPortionPageNumber && p <= rightPortionPageNumber
+        )
+        .map((p) => (
+          <span
+            className={cn(
+              {
                 [s.selectedPage]: currentPage === p,
-                [s.pageNumber]: true,
-              })}
-              onClick={() => {
-                onPageChanged(p)
-              }}
-            >
-              {p}
-            </span>
-          ))}
-      </div>
+              },
+              s.pageNumber
+            )}
+            key={p}
+            onClick={() => handlePageClick(p)} // Updated onClick function
+          >
+            {p}
+          </span>
+        ))}
+      {portionCount > portionNumber && (
+        <button onClick={() => setPortionNumber(portionNumber + 1)}>
+          NEXT
+        </button>
+      )}
     </div>
   )
 }

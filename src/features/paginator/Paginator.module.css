@@ -6,3 +6,48 @@
 .selected:hover {
   pointer-events: fill;
 }
+.paginator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.paginator button {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  color: #333;
+  padding: 8px 12px;
+  margin: 0 3px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.paginator button:hover {
+  background-color: #f0f0f0;
+}
+
+.paginator span {
+  margin: 0 3px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.paginator span:hover {
+  background-color: #f0f0f0;
+}
+
+.paginator span.selectedPage {
+  font-weight: bold;
+  color: #007bff;
+}
+
+.paginator span.selected {
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+
+.paginator span.selected:hover {
+  pointer-events: fill;
+}
