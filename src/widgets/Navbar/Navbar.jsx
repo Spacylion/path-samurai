@@ -1,27 +1,28 @@
 import React from "react"
 import Friends from "./Friends/Friends"
 import s from "./Navbar.module.css"
+import { Link } from "react-router-dom"
 
 const Navbar = (props) => {
   return (
     <nav className={s.nav}>
       <div className={s.nav__item}>
-        <a href='/profile'>Profile</a>
+        <Link to='/profile'>Profile</Link>
       </div>
       <div className={s.nav__item}>
-        <a href='/users'>Users</a>
+        <Link to='/users'>Users</Link>
       </div>
       <div className={s.nav__item}>
-        <a href='/dialogs'>Messages</a>
+        <Link to='/dialogs'>Messages</Link>
       </div>
       <div className={s.nav__item}>
-        <a href='/news'>News</a>
+        <Link to='/news'>News</Link>
       </div>
       <div className={s.nav__item}>
-        <a href='/music'>Music</a>
+        <Link to='/music'>Music</Link>
       </div>
       <div className={s.nav__item}>
-        <a href='/friend'></a>
+        <Link to='/friend'>Friends</Link>
         <Friends friends={props.friends} />
       </div>
     </nav>
