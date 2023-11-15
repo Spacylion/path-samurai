@@ -47,7 +47,7 @@ const App = ({ initializeApp, initialized }) => {
           <Route path='/news' element={<News />} />
           <Route path='/music' element={<Music />} />
           <Route path='/settings' element={<Settings />} />
-          <Route path='*' element={<Navigate to='/' />} />
+          {/* <Route path='*' element={<Navigate to='/' />} /> */}
         </Routes>
       </div>
       <Footer />
