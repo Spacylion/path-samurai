@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@modules/*": [
+        "rest/modules/*"
+      ],
+      "@services/*": [
+        "services/*"
+      ]
+    },
+    "lib": [
+      "decorators",
+      "dom",
+      "es5",
+      "scripthost",
+      "es2015.promise"
+    ]
+  }
+}

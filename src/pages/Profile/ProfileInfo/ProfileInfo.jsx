@@ -7,7 +7,7 @@ import ProfileDataFormReduxForm from "./ProfileDataForm/ProfileDataForm"
 
 const ProfileInfo = ({
   profile,
-  status: string,
+  status,
   updateStatus,
   isOwner,
   savePhoto,
@@ -32,27 +32,29 @@ const ProfileInfo = ({
   }
 
   return (
-    <div>
-      <div className={s.content__profile}>
-        <img src={profile.photos.large || userPhoto} alt='' />
-        {isOwner && <input type={"file"} onChange={onMainPhotoSelected} />}
-        {editMode ? (
-          <ProfileDataFormReduxForm
-            initialValues={profile}
-            profile={profile}
-            onSubmit={onSubmit}
-          />
-        ) : (
-          <ProfileData
-            profile={profile}
-            isOwner={isOwner}
-            goToEditMode={() => {
-              setEditMode(true)
-            }}
-          />
-        )}
-        <ProfileStatusWithHooks status={status} updateStatus={updateStatus} />
-      </div>
+    <div className={s.content__profile}>
+      <img
+        className={s.avatar}
+        src={profile.photos.large || userPhoto}
+        alt=''
+      />
+      {isOwner && <input type={"file"} onChange={onMainPhotoSelected} />}
+      {editMode ? (
+        <ProfileDataFormReduxForm
+          initialValues={profile}
+          profile={profile}
+          onSubmit={onSubmit}
+        />
+      ) : (
+        <ProfileData
+          profile={profile}
+          isOwner={isOwner}
+          goToEditMode={() => {
+            setEditMode(true)
+          }}
+        />
+      )}
+      <ProfileStatusWithHooks status={status} updateStatus={updateStatus} />
     </div>
   )
 }

@@ -6,7 +6,7 @@ import {
   unfollow,
   toggleFollowingProgress,
   requestUsers,
-} from "@/app/redux/reducers/users-reducer"
+} from "@/app/providers/reducers/users-reducer"
 import Users from "./Users"
 import Preloader from "@/features/preloader/Preloader"
 import { compose } from "redux"
@@ -17,7 +17,7 @@ import {
   getPageSize,
   getTotalUsersCount,
   getUsers,
-} from "@/app/redux/users-selectors"
+} from "@/app/providers/users-selectors"
 
 class UsersContainer extends React.Component {
   componentDidMount() {

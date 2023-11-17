@@ -7,7 +7,7 @@ import {
   setCurrentPage,
   toggleFollowingProgress,
   getUsers as getUsersAction,
-} from "@/app/redux/reducers/usersReducer"
+} from "@/app/providers/reducers/usersReducer"
 import Users from "./Users"
 import Preloader from "@/features/Preloader/Preloader"
 import {
@@ -16,7 +16,7 @@ import {
   getPageSize,
   getTotalUsersCount,
   getUsersSuperSelector,
-} from "@/app/redux/selectors/users-selectors"
+} from "@/app/providers/selectors/users-selectors"
 
 class UsersContainer extends Component {
   componentDidMount() {
