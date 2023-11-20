@@ -1,5 +1,5 @@
 import React, {useEffect} from "react"
-import {Routes, Route, BrowserRouter, Navigate} from "react-router-dom"
+import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom"
 import News from "../pages/News/News"
 import Music from "../pages/Music/Music"
 import Settings from "../pages/Settings/Settings"
@@ -10,13 +10,13 @@ import LoginPage from "../pages/Login/Login"
 import HeaderContainer from "../widgets/Header/HeaderContainer"
 import Navbar from "../widgets/Navbar/Navbar"
 import Footer from "../widgets/Footer/Footer"
-import {Provider, connect} from "react-redux"
-import {initializeApp, handleGlobalError,} from "./providers/reducers/appReducer.ts"
+import {connect, Provider} from "react-redux"
+import {handleGlobalError, initializeApp,} from "./providers/reducers/appReducer"
 import "./styles/App.css"
 import Preloader from "../features/Preloader/Preloader"
 import store from "./providers/redux-store/redux-store"
 
-const App = ({ initializeApp, initialized, handleGlobalError, globalError, isAuth }) => {
+const App = ({initializeApp, initialized, handleGlobalError, globalError, isAuth}) => {
     useEffect(() => {
         initializeApp();
         const catchAllUnhandledErrors = (event) => {
@@ -30,7 +30,7 @@ const App = ({ initializeApp, initialized, handleGlobalError, globalError, isAut
     }, [handleGlobalError, initializeApp]);
 
     if (!initialized) {
-        return <Preloader />;
+        return <Preloader/>;
     }
 
     return (
@@ -44,9 +44,9 @@ const App = ({ initializeApp, initialized, handleGlobalError, globalError, isAut
                     </div>
                 )}
                 <Routes>
-                    <Route path='/' element={isAuth ? <Navigate to='/profile' /> : <Navigate to='/login' />} />
+                    <Route path='/' element={isAuth ? <Navigate to='/profile'/> : <Navigate to='/login'/>}/>
 
-                    <Route path='/login' element={<LoginPage />} />
+                    <Route path='/login' element={<LoginPage/>}/>
                     <Route path='/dialogs' element={<DialogsContainer/>}/>
                     <Route path='/profile/:userId?' element={<ProfileContainer/>}/>
                     <Route path='/users' element={<UsersContainer pageTitle={'Users'}/>}/>

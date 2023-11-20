@@ -1,6 +1,6 @@
 import React from "react"
 import {connect} from "react-redux"
-import {addPostActionCreator} from "../../../app/providers/reducers/profileReducer.ts"
+import {addPostActionCreator} from "../../../app/providers/reducers/profileReducer"
 import MyPosts from "./MyPosts"
 
 const mapAddPost = (state) => {

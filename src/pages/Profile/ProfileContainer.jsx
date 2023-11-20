@@ -1,16 +1,14 @@
-import React from "react"
-import {useEffect} from "react"
+import React, {useEffect} from "react"
 import {connect} from "react-redux"
 import {
     getStatus,
-    updateStatus,
     getUserProfile,
     savePhoto,
     saveProfile,
-} from "../../app/providers/reducers/profileReducer.ts"
+    updateStatus,
+} from "../../app/providers/reducers/profileReducer"
 import Profile from "./Profile"
-import {useParams} from "react-router-dom"
-import {useNavigate} from "react-router-dom"
+import {useNavigate, useParams} from "react-router-dom"
 
 const ProfileContainer = ({
                               profile,

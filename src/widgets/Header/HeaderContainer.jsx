@@ -1,9 +1,7 @@
-import React from "react"
-
-import {Component} from "react"
+import React, {Component} from "react"
 import {connect} from "react-redux"
 import Header from "./Header"
-import {logout} from "../../app/providers/reducers/authReducer.ts"
+import {logout} from "../../app/providers/reducers/authReducer"
 
 class HeaderContainer extends Component {
     render() {
