@@ -11,34 +11,26 @@ import HeaderContainer from "../widgets/Header/HeaderContainer"
 import Navbar from "../widgets/Navbar/Navbar"
 import Footer from "../widgets/Footer/Footer"
 import {Provider, connect} from "react-redux"
-import {
-    initializeApp,
-    handleGlobalError,
-} from "./providers/reducers/appReducer.ts"
+import {initializeApp, handleGlobalError,} from "./providers/reducers/appReducer.ts"
 import "./styles/App.css"
 import Preloader from "../features/Preloader/Preloader"
 import store from "./providers/redux-store/redux-store"
 
-const App = ({
-                 initializeApp,
-                 initialized,
-                 handleGlobalError,
-                 globalError,
-             }) => {
+const App = ({ initializeApp, initialized, handleGlobalError, globalError, isAuth }) => {
     useEffect(() => {
-        initializeApp()
+        initializeApp();
         const catchAllUnhandledErrors = (event) => {
-            handleGlobalError(event)
-        }
-        window.addEventListener("unhandledrejection", catchAllUnhandledErrors)
+            handleGlobalError(event);
+        };
+        window.addEventListener("unhandledrejection", catchAllUnhandledErrors);
 
         return () => {
-            window.removeEventListener("unhandledrejection", catchAllUnhandledErrors)
-        }
-    }, [handleGlobalError, initializeApp])
+            window.removeEventListener("unhandledrejection", catchAllUnhandledErrors);
+        };
+    }, [handleGlobalError, initializeApp]);
 
     if (!initialized) {
-        return <Preloader/>
+        return <Preloader />;
     }
 
     return (
@@ -52,11 +44,12 @@ const App = ({
                     </div>
                 )}
                 <Routes>
-                    <Route path='/' element={<Navigate to='/profile'/>}/>
-                    <Route path='/login' element={<LoginPage/>}/>
+                    <Route path='/' element={isAuth ? <Navigate to='/profile' /> : <Navigate to='/login' />} />
+
+                    <Route path='/login' element={<LoginPage />} />
                     <Route path='/dialogs' element={<DialogsContainer/>}/>
                     <Route path='/profile/:userId?' element={<ProfileContainer/>}/>
-                    <Route path='/users' element={<UsersContainer/>}/>
+                    <Route path='/users' element={<UsersContainer pageTitle={'Users'}/>}/>
                     <Route path='/news' element={<News/>}/>
                     <Route path='/music' element={<Music/>}/>
                     <Route path='/settings' element={<Settings/>}/>

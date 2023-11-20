@@ -1,14 +1,9 @@
 import React from "react"
 import {Field, reduxForm} from "redux-form"
 import {Textarea} from "../../../features/forms-controls/FormsControls"
-
-import {
-    maxLengthCreator,
-    requiredField,
-} from "../../../features/input-validators"
+import {maxLengthCreator, required,} from "../../../features/input-validators/validators"
 
 const maxLength10 = maxLengthCreator(30)
-
 // import s from "./DialogsForm.module.css"
 const DialogsForm = (props) => (
     <form onSubmit={props.handleSubmit}>
@@ -17,7 +12,7 @@ const DialogsForm = (props) => (
                 placeholder='Enter message'
                 name='newMessageBody'
                 component={Textarea}
-                validate={[requiredField, maxLength10]}
+                validate={[required, maxLength10]}
             />
         </div>
         <div>

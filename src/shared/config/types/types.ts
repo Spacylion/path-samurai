@@ -12,13 +12,22 @@ export type ContactsType = {
     facebook: string
     vk: string
     instagram: string
+    twitter: string
     website: string
     youtube: string
-    mainlink: string
+    mainLink: string
 }
+
 export type UserType = {
     id: number
     name: string
     status: string
     photos: PhotosType
+    followed: boolean
+}
+export type ProfileType = {
+    userId: number
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    fullName: string
 }
