@@ -1,17 +1,15 @@
 import React from "react"
 import {connect} from "react-redux"
-import {
-    follow,
-    unfollow,
-    requestUsers,
-    setCurrentPage,
-    toggleFollowingProgress,
-} from "../../app/providers/reducers/usersReducer"
+import {follow, unfollow, requestUsers} from "../../app/providers/reducers/usersReducer"
 import Users from "./Users"
 import Preloader from "../../features/Preloader/Preloader.jsx"
 import {
-    getCurrentPage, getFollowingInProgress, getIsFetching,
-    getPageSize, getTotalUsersCount, getUsers,
+    getCurrentPage,
+    getFollowingInProgress,
+    getIsFetching,
+    getPageSize,
+    getTotalUsersCount,
+    getUsers,
 } from "../../app/providers/selectors/users-selectors"
 import {AppStateType} from "../../app/providers/reducers/rootReducer";
 import {UserType} from "../../shared/config/types/types";
@@ -76,7 +74,8 @@ let mapStateToProps = (state: AppStateType): MapStatePropsType => {
     }
 }
 
-const mapDispatchToProps = {follow, unfollow, getUsers: requestUsers, setCurrentPage, toggleFollowingProgress,}
+
+const mapDispatchToProps = {follow, unfollow, getUsers: requestUsers}
 const ConnectedUsersContainer = connect<MapStatePropsType, MapDispatchPropsType, OwnPropsType, AppStateType>
 (mapStateToProps, mapDispatchToProps)
 (UsersContainer)

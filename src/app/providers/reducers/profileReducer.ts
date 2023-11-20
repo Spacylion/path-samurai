@@ -1,10 +1,11 @@
-import {profileAPI, ResultCodesEnum} from '../../../shared/api/api';
+import {ResultCodesEnum} from '../../../shared/api/api';
 import {ADD_POST, SET_USER_PROFILE, SET_STATUS, DELETE_POST, SAVE_PHOTO_SUCCESS} from "../actions/actions.js"
 import {stopSubmit} from 'redux-form';
 import {ContactsType, PhotosType, PostType} from "../../../shared/config/types/types";
 import {AppStateType} from "./rootReducer";
 import {Action, Dispatch} from "redux";
 import {ThunkAction} from "redux-thunk";
+import {profileAPI} from "../../../shared/api/profile-api";
 
 type ProfileType = {
     userId: number

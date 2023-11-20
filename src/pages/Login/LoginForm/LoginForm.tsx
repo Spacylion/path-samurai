@@ -11,8 +11,11 @@ const LoginForm: React.FC<InjectedFormProps<LoginFormValuesType, LoginFormOwnPro
     = ({handleSubmit, error, captchaUrl}) => {
     return (
         <form onSubmit={handleSubmit}>
-            {createField<LoginFormValuesType>('Email', 'email', [required], Input)}
-            {createField<LoginFormValuesType>('Password', 'password', [required], Input, {type: 'password'})}
+            {createField<LoginFormValuesType>('Email', 'email', [required], Input, {autoComplete: 'username'})}
+            {createField<LoginFormValuesType>('Password', 'password', [required], Input, {
+                type: 'password',
+                autoComplete: 'current-password'
+            })}
             {createField<LoginFormValuesType>(undefined, 'rememberMe', [], Input, {type: 'checkbox'}, 'remember me')}
             {captchaUrl && <img src={captchaUrl}/>}
             {captchaUrl && createField<LoginFormValuesType>('Symbols from image', 'captcha', [required], Input, {})}
