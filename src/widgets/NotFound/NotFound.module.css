@@ -1,0 +1,12 @@
+.nav {
+  grid-area: n;
+  background: blue;
+}
+
+.nav__item {
+  color: white;
+  text-decoration: none;
+}
+.nav__text {
+  font-size: 2rem;
+}

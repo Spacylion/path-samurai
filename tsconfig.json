@@ -13,10 +13,20 @@
       "decorators",
       "dom",
       "es5",
-      "scripthost",
+      "scripts",
       "es2015.promise"
     ],
-    "jsx": "react",
+    "target": "esnext",
+    "module": "esnext",
+    "strict": true,
+    "jsx": "preserve",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
     "allowSyntheticDefaultImports": true
   }
 }
