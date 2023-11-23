@@ -1,13 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Gabarito:wght@400;600;800&display=swap");
-
-h1 {
-  font-family: "Gabarito", sans-serif; /* Выбор шрифта */
-  font-weight: 600; /* Установка веса 600 для h1 */
-  font-size: 2em; /* Установка размера для h1 */
-}
-
-h2 {
-  font-family: "Gabarito", sans-serif; /* Выбор шрифта */
-  font-weight: 400; /* Установка веса 400 для h2 */
-  font-size: 1.5em; /* Установка размера для h2 */
+@font-face {
+    font-family: 'MainFont';
+    src: url('Anton-Regular.ttf') format('truetype');
 }

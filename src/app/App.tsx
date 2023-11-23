@@ -1,27 +1,26 @@
 import React, {useEffect, useState} from "react"
-import {BrowserRouter, Link, Navigate, Route, Routes} from "react-router-dom"
-import News from "../pages/News/News"
-import Music from "../pages/Music/Music"
-import Settings from "../pages/Settings/Settings"
-import DialogsContainer from "../pages/Dialogs/DialogsContainer"
-import UsersContainer from "../pages/Users/UsersContainer"
-import ProfileContainer from "../pages/Profile/ProfileContainer"
-import LoginPage from "../pages/Login/Login"
-import HeaderContainer from "../widgets/Header/HeaderContainer"
-import Navbar from "../widgets/Navbar/Navbar"
-import {Footer as FooterComponent} from "../widgets/Footer/Footer"
+import {BrowserRouter, Navigate, NavLink, Route, Routes} from "react-router-dom"
 import {connect, Provider} from "react-redux"
 import {handleGlobalError, initializeApp,} from "./providers/reducers/appReducer"
-import "./styles/App.css"
-import Preloader from "../features/Preloader/Preloader"
 import store from "./providers/redux-store/redux-store"
 import type {MenuProps} from 'antd';
 import {Breadcrumb, Layout, Menu, theme} from "antd";
-import {DesktopOutlined, FileOutlined, PieChartOutlined, TeamOutlined, UserOutlined,} from '@ant-design/icons';
-import s from "../widgets/Navbar/Navbar.module.css";
+import {UserOutlined, GithubOutlined, NotificationOutlined} from '@ant-design/icons';
+import SubMenu from "antd/es/menu/SubMenu";
+import Login from '../pages/Login/Login'
+import Preloader from "../features/Preloader/Preloader"
+import DialogsContainer from '../pages/Dialogs/DialogsContainer'
+import ProfileContainer from '../pages/Profile/ProfileContainer'
+import UsersContainer from '../pages/Users/UsersContainer'
+import Music from '../pages/Music/Music'
+import News from "../pages/News/News"
+import Settings from '../pages/Settings/Settings'
+import "./styles/App.css"
+import AppHeader from '../widgets/Header/Header';
+import s from "../widgets/Header/Header.module.css";
+import logo from "./assets/logo.png"; // Renamed Header to AppHeader
 
 const {Header, Content, Footer, Sider} = Layout;
-
 type MenuItem = Required<MenuProps>['items'][number];
 
 function getItem(
@@ -32,20 +31,6 @@ function getItem(
 ): MenuItem {
     return {key, icon, children, label,} as MenuItem;
 }
-
-const items: MenuItem[] = [
-    getItem('Profile', 'sub1', <UserOutlined/>, [
-        getItem('Edit profile', '3'),
-        getItem('Update status', '4'),
-        getItem('Logout', '5'),
-
-    ]),
-    getItem('Developers', '1', <PieChartOutlined/>),
-    getItem('Posts', '2', <DesktopOutlined/>),
-    getItem('News', 'sub2', <TeamOutlined/>, [getItem('Trends', '6'), getItem('About', '8')]),
-    getItem('Files', '9', <FileOutlined/>),
-];
-
 
 const App: React.FC = ({initializeApp, initialized, handleGlobalError, globalError, isAuth}) => {
     const [collapsed, setCollapsed] = useState(false);
@@ -69,39 +54,43 @@ const App: React.FC = ({initializeApp, initialized, handleGlobalError, globalErr
         return <Preloader/>;
     }
 
+
+    const items = [
+        {title: 'Home', href: '/'},
+        {title: 'List', href: '/list'},
+        {title: 'Profile', href: '/profile'}
+    ];
     return (
-        <Layout style={{minHeight: '100vh'}}>
-            <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
-                <div className="demo-logo-vertical"/>
-                <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items}>
-                    <Menu.Item>
+        <Layout>
+            <Header>
+                <AppHeader/>
+            </Header>
+            <Content style={{padding: '0 50px'}}>
+                <Breadcrumb style={{margin: '16px 0'}}>
+                    {items.title}
+                </Breadcrumb>
+                <Layout className="site-layout-background" style={{padding: '24px 0'}}>
+                    <Sider className="site-layout-background" width={200}>
+                        <Menu mode="inline" style={{height: '100%'}}>
+                            <SubMenu key="sub1" icon={<UserOutlined/>} title="My Profile">
+                                <Menu.Item key="1"> <NavLink to="/profile">Profile</NavLink></Menu.Item>
+                                <Menu.Item key="2"> <NavLink to="/dialogs">Messages</NavLink></Menu.Item>
+                            </SubMenu>
+                            <SubMenu key="sub2" icon={<GithubOutlined/>} title="Developers">
+                                <Menu.Item key="5"><NavLink to="/users">Developers</NavLink></Menu.Item>
+                            </SubMenu>
+                            <SubMenu key="sub3" icon={<NotificationOutlined/>} title="More">
+                                <Menu.Item key="6"><NavLink to="/settings">Settings</NavLink></Menu.Item>
+                                <Menu.Item key="7"><NavLink to="/music">Music</NavLink></Menu.Item>
+                                <Menu.Item key="8"><NavLink to="/news">News</NavLink></Menu.Item>
+                            </SubMenu>
+                        </Menu>
+                    </Sider>
+                    <Content style={{padding: '0 24px', minHeight: 280}}>
 
-                    </Menu.Item>
-
-                </Menu>
-                <Link to='/profile'>Profile</Link>,
-                <Link to='/users'>Users</Link>,
-                <Link to='/dialogs'>Messages</Link>,
-            </Sider>
-            <Navbar/>
-            <Layout>
-                <Header style={{padding: 0, background: colorBgContainer}}>
-                    <HeaderContainer/>
-                </Header>
-                <Content style={{margin: '0 16px'}}>
-                    <Breadcrumb style={{margin: '16px 0'}}>
-                        <Breadcrumb.Item>User</Breadcrumb.Item>
-                        <Breadcrumb.Item>Bill</Breadcrumb.Item>
-                    </Breadcrumb>
-                    <div style={{padding: 24, minHeight: 360, background: colorBgContainer}}>
-                        {globalError && (
-                            <div>
-                                <p>{globalError}</p>
-                            </div>
-                        )}
                         <Routes>
                             <Route path='/' element={isAuth ? <Navigate to='/profile'/> : <Navigate to='/login'/>}/>
-                            <Route path='/login' element={<LoginPage/>}/>
+                            <Route path='/login' element={<Login/>}/>
                             <Route path='/dialogs' element={<DialogsContainer/>}/>
                             <Route path='/profile/:userId?' element={<ProfileContainer/>}/>
                             <Route path='/users' element={<UsersContainer pageTitle={'Users'}/>}/>
@@ -110,25 +99,29 @@ const App: React.FC = ({initializeApp, initialized, handleGlobalError, globalErr
                             <Route path='/settings' element={<Settings/>}/>
                             <Route path='*' render={() => <div>404 NOT FOUND</div>}/>
                         </Routes>
-                    </div>
-                </Content>
-                <Footer style={{textAlign: 'center'}}>
-                    <Footer/>
-                </Footer>
-            </Layout>
+
+                    </Content>
+                </Layout>
+            </Content>
+            <Footer style={{textAlign: 'center'}}>Social Network ©2023 Created by SpacyLion aka Kosach German</Footer>
         </Layout>
+
     )
 }
 
-const mapStateToProps = (state) => ({
-    initialized: state.app.initialized,
-    globalError: state.app.globalError,
-})
+const mapStateToProps = (state) => (
+    {
+        initialized: state.app.initialized,
+        globalError: state.app.globalError,
+    }
+)
 
-const AppConnected = connect(mapStateToProps, {
-    initializeApp,
-    handleGlobalError,
-})(App)
+const AppConnected = connect(mapStateToProps,
+    {
+        initializeApp,
+        handleGlobalError,
+    }
+)(App)
 
 const MainApp = () => {
     return (
@@ -141,3 +134,5 @@ const MainApp = () => {
 }
 
 export default MainApp
+
+

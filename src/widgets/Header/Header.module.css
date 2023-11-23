@@ -1,19 +1,28 @@
 .header {
-  grid-area: h;
-  z-index: 100;
-  display: flex;
-  justify-content: space-between;
-  background: rgb(177, 198, 216);
+    grid-area: h;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    background: rgb(177, 198, 216);
 }
 
+
 .header__image {
-  width: 100px;
-  height: 60px;
+    width: 100px;
+    height: 60px;
 }
+
 .login__block {
-  float: right;
-  font-size: 2rem;
+    float: right;
+
+    font-size: 2rem;
 }
+
 .login__block a {
-  color: black;
+    color: black;
+}
+
+h2 {
+    color: white;
+    font-family: 'MainFont', sans-serif;
 }
